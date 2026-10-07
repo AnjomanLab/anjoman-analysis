@@ -1,0 +1,5 @@
+robot,samples,duration_s,sampling_rate_hz,timestamp_duplicates,timestamp_reversals,timestamp_large_gaps,imu_valid_pct,accel_finite_pct,gyro_finite_pct,temperature_finite_pct
+sysid_r1,14996,150.005189,100.0,0,0,0,100.0,100.0,100.0,100.0
+sysid_r2,14995,150.003109,99.94003597841296,0,0,0,100.0,100.0,100.0,100.0
+sysid_r3,14995,150.006432,99.94003597841296,0,0,0,100.0,100.0,100.0,100.0
+sysid_r4,14995,150.002631,99.94003597841296,0,0,0,100.0,100.0,100.0,100.0

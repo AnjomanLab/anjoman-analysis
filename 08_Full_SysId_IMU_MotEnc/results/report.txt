@@ -1,0 +1,232 @@
+==============================================================================
+ANJOMAN GROUND SYSID ANALYSIS
+==============================================================================
+
+Analyzer automatically discovered sysid_r*.csv in the script directory.
+
+==============================================================================
+1. DATA QUALITY
+==============================================================================
+
+Robot 1
+----------------------------------------
+Samples:                 14996
+Duration:                150.005 s
+Actual sample rate:      100.000 Hz
+Median sample period:    10.000 ms
+Max sample period:       10.021 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            100.00 %
+
+Robot 2
+----------------------------------------
+Samples:                 14995
+Duration:                150.003 s
+Actual sample rate:      99.940 Hz
+Median sample period:    10.006 ms
+Max sample period:       10.024 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            99.97 %
+
+Robot 3
+----------------------------------------
+Samples:                 14995
+Duration:                150.006 s
+Actual sample rate:      99.940 Hz
+Median sample period:    10.006 ms
+Max sample period:       10.024 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            100.00 %
+
+Robot 4
+----------------------------------------
+Samples:                 14995
+Duration:                150.003 s
+Actual sample rate:      99.940 Hz
+Median sample period:    10.006 ms
+Max sample period:       10.024 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            100.00 %
+
+==============================================================================
+2. STATIC MOTOR IDENTIFICATION
+==============================================================================
+
+Primary model: |RPM| = gain * max(|PWM| - deadband, 0)
+
+Robot  Side   Dir   Deadband         Gain       R2       RMSE     MaxRPM
+------------------------------------------------------------------------
+    1     L   FWD     0.4535       196.93   0.9941       2.02       84.2
+    1     L   REV     0.4658       194.76   0.9848       3.14       79.8
+    1     R   FWD     0.4996       251.13   0.9757       4.66       95.3
+    1     R   REV     0.4660       227.31   0.9911       2.79       95.2
+    2     L   FWD     0.3719       192.46   0.9938       2.46       96.5
+    2     L   REV     0.4385       229.81   0.9703       5.59       97.7
+    2     R   FWD     0.3828       194.96   0.9669       5.73       90.2
+    2     R   REV     0.3681       186.07   0.9892       3.19       91.8
+    3     L   FWD     0.4334       213.21   0.9624       5.94       90.1
+    3     L   REV     0.4316       215.79   0.9576       6.44       90.4
+    3     R   FWD     0.3899       174.18   0.9933       2.24       83.7
+    3     R   REV     0.4422       195.42   0.9710       4.67       81.7
+    4     L   FWD     0.4284       245.57   0.9533       7.75      102.8
+    4     L   REV     0.4296       243.65   0.9559       7.46      102.9
+    4     R   FWD     0.3960       222.02   0.9822       4.62      104.2
+    4     R   REV     0.3923       213.26   0.9798       4.77      100.2
+
+==============================================================================
+3. DYNAMIC IDENTIFICATION
+==============================================================================
+
+First-order approximation is used where identifiable.
+
+Robot  Side      Transition     Cmd    Tau[s]   Rise[s]  Settle[s]    OS[%]       R2
+------------------------------------------------------------------------------------
+    1     L      L_0.50_FWD    0.50    0.3845    0.0500        N/A    25.71   0.6939
+    1     L      L_0.80_FWD    0.80    0.2057    0.2501        N/A    12.34   0.5642
+    1     L      L_0.60_REV   -0.60    0.3387    0.3502        N/A    21.41   0.6113
+    1     R      R_0.50_FWD    0.50    0.4539    1.0504        N/A     8.36   0.9579
+    1     R      R_0.80_FWD    0.80    0.2204    0.4503     2.9314     3.68   0.9726
+    1     R      R_0.60_REV   -0.60    0.2897    0.6002        N/A     8.30   0.9653
+    2     L      L_0.50_FWD    0.50    0.3374    0.5502     2.9812    15.41   0.9332
+    2     L      L_0.80_FWD    0.80    0.1936    0.2501     2.9312     4.37   0.9446
+    2     L      L_0.60_REV   -0.60    0.2880    0.4502     2.7812     6.81   0.9719
+    2     R      R_0.50_FWD    0.50    0.4034    0.8504        N/A     4.77   0.9799
+    2     R      R_0.80_FWD    0.80    0.1972    0.3002        N/A     3.20   0.9681
+    2     R      R_0.60_REV   -0.60    0.2903    0.6002        N/A     3.32   0.9798
+    3     L      L_0.50_FWD    0.50    0.3252    0.6503        N/A     5.14   0.9785
+    3     L      L_0.80_FWD    0.80    0.2103    0.3502     2.6813     2.32   0.9735
+    3     L      L_0.60_REV   -0.60    0.3414    0.6003     2.8814     4.00   0.9815
+    3     R      R_0.50_FWD    0.50    0.2918    0.5002        N/A    10.80   0.9521
+    3     R      R_0.80_FWD    0.80    0.1831    0.4502        N/A     7.24   0.9546
+    3     R      R_0.60_REV   -0.60    0.3091    0.6003     2.9313    11.00   0.9564
+    4     L      L_0.50_FWD    0.50    0.3390    0.7503        N/A    17.46   0.8912
+    4     L      L_0.80_FWD    0.80    0.2149    0.3502        N/A     7.98   0.9165
+    4     L      L_0.60_REV   -0.60    0.3200    0.7003     2.9812     9.09   0.9288
+    4     R      R_0.50_FWD    0.50    0.3056    0.5502        N/A     7.93   0.9778
+    4     R      R_0.80_FWD    0.80    0.2171    0.3502     2.9312     3.27   0.9725
+    4     R      R_0.60_REV   -0.60    0.2867    0.5503        N/A     2.18   0.9841
+
+==============================================================================
+4. LEFT/RIGHT ASYMMETRY
+==============================================================================
+
+Robot 1
+  Mean mismatch:   12.384 %
+  Median mismatch: 11.630 %
+  Max mismatch:    18.862 %
+  P95 mismatch:    18.024 %
+
+Robot 2
+  Mean mismatch:   3.310 %
+  Median mismatch: 2.607 %
+  Max mismatch:    6.679 %
+  P95 mismatch:    6.272 %
+
+Robot 3
+  Mean mismatch:   11.456 %
+  Median mismatch: 10.296 %
+  Max mismatch:    23.854 %
+  P95 mismatch:    21.783 %
+
+Robot 4
+  Mean mismatch:   2.428 %
+  Median mismatch: 2.924 %
+  Max mismatch:    4.044 %
+  P95 mismatch:    3.888 %
+
+==============================================================================
+5. COAST-DOWN
+==============================================================================
+
+Decay tau is an effective empirical parameter.
+Absolute friction coefficients cannot be uniquely identified without independent mechanical inertia J.
+
+Robot 1
+  L FWD_COAST: tau=0.2384 s, R2=0.9334, RPM 66.2 -> 0.0
+  R FWD_COAST: tau=0.2636 s, R2=0.9699, RPM 70.6 -> 0.3
+  L REV_COAST: tau=0.2373 s, R2=0.8872, RPM 59.2 -> 0.0
+  R REV_COAST: tau=0.3051 s, R2=0.9305, RPM 69.7 -> 0.0
+
+Robot 2
+  L FWD_COAST: tau=0.3174 s, R2=0.9554, RPM 82.3 -> 0.0
+  R FWD_COAST: tau=0.3051 s, R2=0.9688, RPM 77.3 -> 0.0
+  L REV_COAST: tau=0.3240 s, R2=0.9726, RPM 82.0 -> 0.0
+  R REV_COAST: tau=0.3147 s, R2=0.9738, RPM 79.1 -> 0.0
+
+Robot 3
+  L FWD_COAST: tau=0.2867 s, R2=0.9588, RPM 75.3 -> 0.0
+  R FWD_COAST: tau=0.2686 s, R2=0.9418, RPM 70.0 -> 0.0
+  L REV_COAST: tau=0.2988 s, R2=0.9399, RPM 75.9 -> 0.0
+  R REV_COAST: tau=0.2720 s, R2=0.9247, RPM 71.2 -> 0.0
+
+Robot 4
+  L FWD_COAST: tau=0.3305 s, R2=0.9680, RPM 92.6 -> 0.0
+  R FWD_COAST: tau=0.3356 s, R2=0.9464, RPM 87.0 -> 0.0
+  L REV_COAST: tau=0.3105 s, R2=0.9498, RPM 88.2 -> 0.0
+  R REV_COAST: tau=0.3351 s, R2=0.9541, RPM 85.0 -> 0.0
+
+==============================================================================
+6. ELECTRICAL TELEMETRY
+==============================================================================
+
+INA226 values are shared driver/bus measurements, not individual motor measurements.
+
+Robot 1
+  battery_voltage: overall range 5.68 .. 8.57
+  driver_voltage: overall range 7.03 .. 7.74
+  driver_current: overall range 1.00 .. 1844.80
+  driver_power: overall range 7.70 .. 13028.50
+
+Robot 2
+  battery_voltage: overall range 6.42 .. 9.43
+  driver_voltage: overall range 0.00 .. 8.11
+  driver_current: overall range 0.00 .. 1770.00
+  driver_power: overall range 0.00 .. 13467.50
+
+Robot 3
+  battery_voltage: overall range 5.75 .. 10.04
+  driver_voltage: overall range 6.99 .. 8.32
+  driver_current: overall range 2.20 .. 1662.00
+  driver_power: overall range 17.40 .. 11617.40
+
+Robot 4
+  battery_voltage: overall range 6.90 .. 10.87
+  driver_voltage: overall range 7.69 .. 8.42
+  driver_current: overall range 0.80 .. 1785.80
+  driver_power: overall range 6.30 .. 13739.10
+
+==============================================================================
+7. INTERPRETATION NOTES
+==============================================================================
+
+1. Static identification uses steady-state windows from the 14-level PWM sweeps.
+2. cmd_v is NOT treated as measured robot velocity.
+3. RPM is treated as the primary propulsion output.
+4. Dynamic tau values describe the observed motor/drive response under this experiment.
+5. Coast-down results do not by themselves provide unique Coulomb/viscous friction coefficients.
+6. Driver current/power are bus-level quantities because the instrumentation is shared.
+7. The analyzer does not claim parameter identifiability where the recorded data do not support it.

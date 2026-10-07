@@ -1,0 +1,1307 @@
+
+```
+$ cat report.txt
+==============================================================================
+ANJOMAN GROUND SYSID ANALYSIS
+==============================================================================
+
+Analyzer automatically discovered sysid_r*.csv in the script directory.
+
+==============================================================================
+1. DATA QUALITY
+==============================================================================
+
+Robot 1
+----------------------------------------
+Samples:                 14996
+Duration:                150.005 s
+Actual sample rate:      100.000 Hz
+Median sample period:    10.000 ms
+Max sample period:       10.021 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            100.00 %
+
+Robot 2
+----------------------------------------
+Samples:                 14995
+Duration:                150.003 s
+Actual sample rate:      99.940 Hz
+Median sample period:    10.006 ms
+Max sample period:       10.024 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            99.97 %
+
+Robot 3
+----------------------------------------
+Samples:                 14995
+Duration:                150.006 s
+Actual sample rate:      99.940 Hz
+Median sample period:    10.006 ms
+Max sample period:       10.024 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            100.00 %
+
+Robot 4
+----------------------------------------
+Samples:                 14995
+Duration:                150.003 s
+Actual sample rate:      99.940 Hz
+Median sample period:    10.006 ms
+Max sample period:       10.024 ms
+Timestamp duplicates:    0
+Timestamp reversals:     0
+Detected timestamp gaps: 0
+Estimated missing rows:  0
+Encoder L valid:         100.00 %
+Encoder R valid:         100.00 %
+IMU valid:               100.00 %
+INA226 valid:            100.00 %
+
+==============================================================================
+2. STATIC MOTOR IDENTIFICATION
+==============================================================================
+
+Primary model: |RPM| = gain * max(|PWM| - deadband, 0)
+
+Robot  Side   Dir   Deadband         Gain       R2       RMSE     MaxRPM
+------------------------------------------------------------------------
+    1     L   FWD     0.4535       196.93   0.9941       2.02       84.2
+    1     L   REV     0.4658       194.76   0.9848       3.14       79.8
+    1     R   FWD     0.4996       251.13   0.9757       4.66       95.3
+    1     R   REV     0.4660       227.31   0.9911       2.79       95.2
+    2     L   FWD     0.3719       192.46   0.9938       2.46       96.5
+    2     L   REV     0.4385       229.81   0.9703       5.59       97.7
+    2     R   FWD     0.3828       194.96   0.9669       5.73       90.2
+    2     R   REV     0.3681       186.07   0.9892       3.19       91.8
+    3     L   FWD     0.4334       213.21   0.9624       5.94       90.1
+    3     L   REV     0.4316       215.79   0.9576       6.44       90.4
+    3     R   FWD     0.3899       174.18   0.9933       2.24       83.7
+    3     R   REV     0.4422       195.42   0.9710       4.67       81.7
+    4     L   FWD     0.4284       245.57   0.9533       7.75      102.8
+    4     L   REV     0.4296       243.65   0.9559       7.46      102.9
+    4     R   FWD     0.3960       222.02   0.9822       4.62      104.2
+    4     R   REV     0.3923       213.26   0.9798       4.77      100.2
+
+==============================================================================
+3. DYNAMIC IDENTIFICATION
+==============================================================================
+
+First-order approximation is used where identifiable.
+
+Robot  Side      Transition     Cmd    Tau[s]   Rise[s]  Settle[s]    OS[%]       R2
+------------------------------------------------------------------------------------
+    1     L      L_0.50_FWD    0.50    0.3845    0.0500        N/A    25.71   0.6939
+    1     L      L_0.80_FWD    0.80    0.2057    0.2501        N/A    12.34   0.5642
+    1     L      L_0.60_REV   -0.60    0.3387    0.3502        N/A    21.41   0.6113
+    1     R      R_0.50_FWD    0.50    0.4539    1.0504        N/A     8.36   0.9579
+    1     R      R_0.80_FWD    0.80    0.2204    0.4503     2.9314     3.68   0.9726
+    1     R      R_0.60_REV   -0.60    0.2897    0.6002        N/A     8.30   0.9653
+    2     L      L_0.50_FWD    0.50    0.3374    0.5502     2.9812    15.41   0.9332
+    2     L      L_0.80_FWD    0.80    0.1936    0.2501     2.9312     4.37   0.9446
+    2     L      L_0.60_REV   -0.60    0.2880    0.4502     2.7812     6.81   0.9719
+    2     R      R_0.50_FWD    0.50    0.4034    0.8504        N/A     4.77   0.9799
+    2     R      R_0.80_FWD    0.80    0.1972    0.3002        N/A     3.20   0.9681
+    2     R      R_0.60_REV   -0.60    0.2903    0.6002        N/A     3.32   0.9798
+    3     L      L_0.50_FWD    0.50    0.3252    0.6503        N/A     5.14   0.9785
+    3     L      L_0.80_FWD    0.80    0.2103    0.3502     2.6813     2.32   0.9735
+    3     L      L_0.60_REV   -0.60    0.3414    0.6003     2.8814     4.00   0.9815
+    3     R      R_0.50_FWD    0.50    0.2918    0.5002        N/A    10.80   0.9521
+    3     R      R_0.80_FWD    0.80    0.1831    0.4502        N/A     7.24   0.9546
+    3     R      R_0.60_REV   -0.60    0.3091    0.6003     2.9313    11.00   0.9564
+    4     L      L_0.50_FWD    0.50    0.3390    0.7503        N/A    17.46   0.8912
+    4     L      L_0.80_FWD    0.80    0.2149    0.3502        N/A     7.98   0.9165
+    4     L      L_0.60_REV   -0.60    0.3200    0.7003     2.9812     9.09   0.9288
+    4     R      R_0.50_FWD    0.50    0.3056    0.5502        N/A     7.93   0.9778
+    4     R      R_0.80_FWD    0.80    0.2171    0.3502     2.9312     3.27   0.9725
+    4     R      R_0.60_REV   -0.60    0.2867    0.5503        N/A     2.18   0.9841
+
+==============================================================================
+4. LEFT/RIGHT ASYMMETRY
+==============================================================================
+
+Robot 1
+  Mean mismatch:   12.384 %
+  Median mismatch: 11.630 %
+  Max mismatch:    18.862 %
+  P95 mismatch:    18.024 %
+
+Robot 2
+  Mean mismatch:   3.310 %
+  Median mismatch: 2.607 %
+  Max mismatch:    6.679 %
+  P95 mismatch:    6.272 %
+
+Robot 3
+  Mean mismatch:   11.456 %
+  Median mismatch: 10.296 %
+  Max mismatch:    23.854 %
+  P95 mismatch:    21.783 %
+
+Robot 4
+  Mean mismatch:   2.428 %
+  Median mismatch: 2.924 %
+  Max mismatch:    4.044 %
+  P95 mismatch:    3.888 %
+
+==============================================================================
+5. COAST-DOWN
+==============================================================================
+
+Decay tau is an effective empirical parameter.
+Absolute friction coefficients cannot be uniquely identified without independent mechanical inertia J.
+
+Robot 1
+  L FWD_COAST: tau=0.2384 s, R2=0.9334, RPM 66.2 -> 0.0
+  R FWD_COAST: tau=0.2636 s, R2=0.9699, RPM 70.6 -> 0.3
+  L REV_COAST: tau=0.2373 s, R2=0.8872, RPM 59.2 -> 0.0
+  R REV_COAST: tau=0.3051 s, R2=0.9305, RPM 69.7 -> 0.0
+
+Robot 2
+  L FWD_COAST: tau=0.3174 s, R2=0.9554, RPM 82.3 -> 0.0
+  R FWD_COAST: tau=0.3051 s, R2=0.9688, RPM 77.3 -> 0.0
+  L REV_COAST: tau=0.3240 s, R2=0.9726, RPM 82.0 -> 0.0
+  R REV_COAST: tau=0.3147 s, R2=0.9738, RPM 79.1 -> 0.0
+
+Robot 3
+  L FWD_COAST: tau=0.2867 s, R2=0.9588, RPM 75.3 -> 0.0
+  R FWD_COAST: tau=0.2686 s, R2=0.9418, RPM 70.0 -> 0.0
+  L REV_COAST: tau=0.2988 s, R2=0.9399, RPM 75.9 -> 0.0
+  R REV_COAST: tau=0.2720 s, R2=0.9247, RPM 71.2 -> 0.0
+
+Robot 4
+  L FWD_COAST: tau=0.3305 s, R2=0.9680, RPM 92.6 -> 0.0
+  R FWD_COAST: tau=0.3356 s, R2=0.9464, RPM 87.0 -> 0.0
+  L REV_COAST: tau=0.3105 s, R2=0.9498, RPM 88.2 -> 0.0
+  R REV_COAST: tau=0.3351 s, R2=0.9541, RPM 85.0 -> 0.0
+
+==============================================================================
+6. ELECTRICAL TELEMETRY
+==============================================================================
+
+INA226 values are shared driver/bus measurements, not individual motor measurements.
+
+Robot 1
+  battery_voltage: overall range 5.68 .. 8.57
+  driver_voltage: overall range 7.03 .. 7.74
+  driver_current: overall range 1.00 .. 1844.80
+  driver_power: overall range 7.70 .. 13028.50
+
+Robot 2
+  battery_voltage: overall range 6.42 .. 9.43
+  driver_voltage: overall range 0.00 .. 8.11
+  driver_current: overall range 0.00 .. 1770.00
+  driver_power: overall range 0.00 .. 13467.50
+
+Robot 3
+  battery_voltage: overall range 5.75 .. 10.04
+  driver_voltage: overall range 6.99 .. 8.32
+  driver_current: overall range 2.20 .. 1662.00
+  driver_power: overall range 17.40 .. 11617.40
+
+Robot 4
+  battery_voltage: overall range 6.90 .. 10.87
+  driver_voltage: overall range 7.69 .. 8.42
+  driver_current: overall range 0.80 .. 1785.80
+  driver_power: overall range 6.30 .. 13739.10
+
+==============================================================================
+7. INTERPRETATION NOTES
+==============================================================================
+
+1. Static identification uses steady-state windows from the 14-level PWM sweeps.
+2. cmd_v is NOT treated as measured robot velocity.
+3. RPM is treated as the primary propulsion output.
+4. Dynamic tau values describe the observed motor/drive response under this experiment.
+5. Coast-down results do not by themselves provide unique Coulomb/viscous friction coefficients.
+6. Driver current/power are bus-level quantities because the instrumentation is shared.
+7. The analyzer does not claim parameter identifiability where the recorded data do not support it.
+```
+
+
+```
+$ cat results.csv
+category,robot,side,direction,metric,value
+quality,1,,,samples,14996.0
+quality,1,,,duration_s,150.005189
+quality,1,,,sample_rate_hz,100.0
+quality,1,,,median_dt_ms,10.0
+quality,1,,,mean_dt_ms,10.003680493497832
+quality,1,,,min_dt_ms,10.0
+quality,1,,,max_dt_ms,10.021
+quality,1,,,timestamp_duplicates,0.0
+quality,1,,,timestamp_negative_steps,0.0
+quality,1,,,timestamp_gaps,0.0
+quality,1,,,estimated_missing_samples,0.0
+quality,1,,,encoder_valid_l_pct,100.0
+quality,1,,,encoder_valid_r_pct,100.0
+quality,1,,,imu_valid_pct,100.0
+quality,1,,,ina_valid_pct,100.0
+quality,1,,,phase_0_samples,500.0
+quality,1,,,phase_1_samples,1680.0
+quality,1,,,phase_2_samples,1679.0
+quality,1,,,phase_3_samples,1680.0
+quality,1,,,phase_4_samples,1679.0
+quality,1,,,phase_5_samples,1399.0
+quality,1,,,phase_6_samples,1400.0
+quality,1,,,phase_7_samples,1999.0
+quality,1,,,phase_8_samples,1600.0
+quality,1,,,phase_9_samples,1380.0
+quality,2,,,samples,14995.0
+quality,2,,,duration_s,150.003109
+quality,2,,,sample_rate_hz,99.94003597841296
+quality,2,,,median_dt_ms,10.005999999999998
+quality,2,,,mean_dt_ms,10.004208950246765
+quality,2,,,min_dt_ms,10.0
+quality,2,,,max_dt_ms,10.024
+quality,2,,,timestamp_duplicates,0.0
+quality,2,,,timestamp_negative_steps,0.0
+quality,2,,,timestamp_gaps,0.0
+quality,2,,,estimated_missing_samples,0.0
+quality,2,,,encoder_valid_l_pct,100.0
+quality,2,,,encoder_valid_r_pct,100.0
+quality,2,,,imu_valid_pct,100.0
+quality,2,,,ina_valid_pct,99.96665555185061
+quality,2,,,phase_0_samples,500.0
+quality,2,,,phase_1_samples,1679.0
+quality,2,,,phase_2_samples,1680.0
+quality,2,,,phase_3_samples,1679.0
+quality,2,,,phase_4_samples,1679.0
+quality,2,,,phase_5_samples,1400.0
+quality,2,,,phase_6_samples,1399.0
+quality,2,,,phase_7_samples,1999.0
+quality,2,,,phase_8_samples,1600.0
+quality,2,,,phase_9_samples,1380.0
+quality,3,,,samples,14995.0
+quality,3,,,duration_s,150.006432
+quality,3,,,sample_rate_hz,99.94003597841296
+quality,3,,,median_dt_ms,10.005999999999998
+quality,3,,,mean_dt_ms,10.004430572228891
+quality,3,,,min_dt_ms,10.0
+quality,3,,,max_dt_ms,10.024
+quality,3,,,timestamp_duplicates,0.0
+quality,3,,,timestamp_negative_steps,0.0
+quality,3,,,timestamp_gaps,0.0
+quality,3,,,estimated_missing_samples,0.0
+quality,3,,,encoder_valid_l_pct,100.0
+quality,3,,,encoder_valid_r_pct,100.0
+quality,3,,,imu_valid_pct,100.0
+quality,3,,,ina_valid_pct,100.0
+quality,3,,,phase_0_samples,500.0
+quality,3,,,phase_1_samples,1680.0
+quality,3,,,phase_2_samples,1679.0
+quality,3,,,phase_3_samples,1679.0
+quality,3,,,phase_4_samples,1679.0
+quality,3,,,phase_5_samples,1400.0
+quality,3,,,phase_6_samples,1399.0
+quality,3,,,phase_7_samples,1999.0
+quality,3,,,phase_8_samples,1599.0
+quality,3,,,phase_9_samples,1381.0
+quality,4,,,samples,14995.0
+quality,4,,,duration_s,150.002631
+quality,4,,,sample_rate_hz,99.94003597841296
+quality,4,,,median_dt_ms,10.005999999999998
+quality,4,,,mean_dt_ms,10.004177070828332
+quality,4,,,min_dt_ms,10.0
+quality,4,,,max_dt_ms,10.024
+quality,4,,,timestamp_duplicates,0.0
+quality,4,,,timestamp_negative_steps,0.0
+quality,4,,,timestamp_gaps,0.0
+quality,4,,,estimated_missing_samples,0.0
+quality,4,,,encoder_valid_l_pct,100.0
+quality,4,,,encoder_valid_r_pct,100.0
+quality,4,,,imu_valid_pct,100.0
+quality,4,,,ina_valid_pct,100.0
+quality,4,,,phase_0_samples,500.0
+quality,4,,,phase_1_samples,1680.0
+quality,4,,,phase_2_samples,1679.0
+quality,4,,,phase_3_samples,1679.0
+quality,4,,,phase_4_samples,1679.0
+quality,4,,,phase_5_samples,1400.0
+quality,4,,,phase_6_samples,1399.0
+quality,4,,,phase_7_samples,1999.0
+quality,4,,,phase_8_samples,1600.0
+quality,4,,,phase_9_samples,1380.0
+static,1,L,FWD,deadband_fit,0.453478224005701
+static,1,L,FWD,gain_rpm_per_pwm,196.9311931930522
+static,1,L,FWD,intercept_rpm,0.0
+static,1,L,FWD,r2,0.9941453345400031
+static,1,L,FWD,rmse_rpm,2.0233215878122475
+static,1,L,FWD,n_levels,14.0
+static,1,L,FWD,first_active_pwm,0.5
+static,1,L,FWD,max_rpm,84.20416666666665
+static,1,L,REV,deadband_fit,0.4658323257414438
+static,1,L,REV,gain_rpm_per_pwm,194.7615888415057
+static,1,L,REV,intercept_rpm,0.0
+static,1,L,REV,r2,0.9847761856050391
+static,1,L,REV,rmse_rpm,3.13957877241059
+static,1,L,REV,n_levels,14.0
+static,1,L,REV,first_active_pwm,0.5508333333333333
+static,1,L,REV,max_rpm,79.79338983050846
+static,1,R,FWD,deadband_fit,0.4996001828763931
+static,1,R,FWD,gain_rpm_per_pwm,251.13286663851738
+static,1,R,FWD,intercept_rpm,0.0
+static,1,R,FWD,r2,0.9756906265235189
+static,1,R,FWD,rmse_rpm,4.656306511143068
+static,1,R,FWD,n_levels,14.0
+static,1,R,FWD,first_active_pwm,0.6000000000000001
+static,1,R,FWD,max_rpm,95.31150000000001
+static,1,R,REV,deadband_fit,0.46603011317278237
+static,1,R,REV,gain_rpm_per_pwm,227.30764189710735
+static,1,R,REV,intercept_rpm,0.0
+static,1,R,REV,r2,0.9911191534158227
+static,1,R,REV,rmse_rpm,2.788902598614898
+static,1,R,REV,n_levels,14.0
+static,1,R,REV,first_active_pwm,0.5508333333333333
+static,1,R,REV,max_rpm,95.20100000000001
+static,2,L,FWD,deadband_fit,0.37188065761010214
+static,2,L,FWD,gain_rpm_per_pwm,192.45719310716163
+static,2,L,FWD,intercept_rpm,0.0
+static,2,L,FWD,r2,0.9938383111873036
+static,2,L,FWD,rmse_rpm,2.4582851761244613
+static,2,L,FWD,n_levels,14.0
+static,2,L,FWD,first_active_pwm,0.45
+static,2,L,FWD,max_rpm,96.53816666666665
+static,2,L,REV,deadband_fit,0.4384885572194963
+static,2,L,REV,gain_rpm_per_pwm,229.8107921431393
+static,2,L,REV,intercept_rpm,0.0
+static,2,L,REV,r2,0.9703493233395831
+static,2,L,REV,rmse_rpm,5.586510801691123
+static,2,L,REV,n_levels,14.0
+static,2,L,REV,first_active_pwm,0.5499999999999999
+static,2,L,REV,max_rpm,97.74483333333336
+static,2,R,FWD,deadband_fit,0.38278457861641557
+static,2,R,FWD,gain_rpm_per_pwm,194.96236506401698
+static,2,R,FWD,intercept_rpm,0.0
+static,2,R,FWD,r2,0.966933781014543
+static,2,R,FWD,rmse_rpm,5.727682958961117
+static,2,R,FWD,n_levels,14.0
+static,2,R,FWD,first_active_pwm,0.5008333333333334
+static,2,R,FWD,max_rpm,90.23067796610168
+static,2,R,REV,deadband_fit,0.3681104381159083
+static,2,R,REV,gain_rpm_per_pwm,186.0687969483011
+static,2,R,REV,intercept_rpm,0.0
+static,2,R,REV,r2,0.9892111255854624
+static,2,R,REV,rmse_rpm,3.185415679837543
+static,2,R,REV,n_levels,14.0
+static,2,R,REV,first_active_pwm,0.45
+static,2,R,REV,max_rpm,91.82830508474576
+static,3,L,FWD,deadband_fit,0.4333697674951166
+static,3,L,FWD,gain_rpm_per_pwm,213.21051979186174
+static,3,L,FWD,intercept_rpm,0.0
+static,3,L,FWD,r2,0.9623932061019521
+static,3,L,FWD,rmse_rpm,5.9353899168857795
+static,3,L,FWD,n_levels,14.0
+static,3,L,FWD,first_active_pwm,0.5499999999999999
+static,3,L,FWD,max_rpm,90.06333333333332
+static,3,L,REV,deadband_fit,0.4316325499510614
+static,3,L,REV,gain_rpm_per_pwm,215.7857501228698
+static,3,L,REV,intercept_rpm,0.0
+static,3,L,REV,r2,0.9576061216820725
+static,3,L,REV,rmse_rpm,6.438142511005931
+static,3,L,REV,n_levels,14.0
+static,3,L,REV,first_active_pwm,0.5508333333333333
+static,3,L,REV,max_rpm,90.40711864406778
+static,3,R,FWD,deadband_fit,0.3898521970902558
+static,3,R,FWD,gain_rpm_per_pwm,174.17939559020897
+static,3,R,FWD,intercept_rpm,0.0
+static,3,R,FWD,r2,0.9932775086419531
+static,3,R,FWD,rmse_rpm,2.2423675965054306
+static,3,R,FWD,n_levels,14.0
+static,3,R,FWD,first_active_pwm,0.45083333333333336
+static,3,R,FWD,max_rpm,83.73399999999998
+static,3,R,REV,deadband_fit,0.44216222625519974
+static,3,R,REV,gain_rpm_per_pwm,195.42439368497315
+static,3,R,REV,intercept_rpm,0.0
+static,3,R,REV,r2,0.9709939097205058
+static,3,R,REV,rmse_rpm,4.668250790141613
+static,3,R,REV,n_levels,14.0
+static,3,R,REV,first_active_pwm,0.5508333333333333
+static,3,R,REV,max_rpm,81.74366666666666
+static,4,L,FWD,deadband_fit,0.4283594175764341
+static,4,L,FWD,gain_rpm_per_pwm,245.57182322310825
+static,4,L,FWD,intercept_rpm,0.0
+static,4,L,FWD,r2,0.9533211400641531
+static,4,L,FWD,rmse_rpm,7.747458581969866
+static,4,L,FWD,n_levels,14.0
+static,4,L,FWD,first_active_pwm,0.5499999999999999
+static,4,L,FWD,max_rpm,102.80666666666669
+static,4,L,REV,deadband_fit,0.42958227720810266
+static,4,L,REV,gain_rpm_per_pwm,243.65215021816243
+static,4,L,REV,intercept_rpm,0.0
+static,4,L,REV,r2,0.9559193591030736
+static,4,L,REV,rmse_rpm,7.456854011461004
+static,4,L,REV,n_levels,14.0
+static,4,L,REV,first_active_pwm,0.5508333333333333
+static,4,L,REV,max_rpm,102.88049999999998
+static,4,R,FWD,deadband_fit,0.39595930728809636
+static,4,R,FWD,gain_rpm_per_pwm,222.0230982706187
+static,4,R,FWD,intercept_rpm,0.0
+static,4,R,FWD,r2,0.9822159494111079
+static,4,R,FWD,rmse_rpm,4.6164299058028755
+static,4,R,FWD,n_levels,14.0
+static,4,R,FWD,first_active_pwm,0.5008333333333334
+static,4,R,FWD,max_rpm,104.16566666666668
+static,4,R,REV,deadband_fit,0.3922642934012985
+static,4,R,REV,gain_rpm_per_pwm,213.2642005806817
+static,4,R,REV,intercept_rpm,0.0
+static,4,R,REV,r2,0.9797739357568294
+static,4,R,REV,rmse_rpm,4.769109999763557
+static,4,R,REV,n_levels,14.0
+static,4,R,REV,first_active_pwm,0.5
+static,4,R,REV,max_rpm,100.19254237288133
+dynamic,1,L,,L_0.50_FWD:command,0.5
+dynamic,1,L,,L_0.50_FWD:tau_s,0.38450771235671183
+dynamic,1,L,,L_0.50_FWD:rise_time_s,0.04999999999999999
+dynamic,1,L,,L_0.50_FWD:settling_time_s,
+dynamic,1,L,,L_0.50_FWD:overshoot_pct,25.711765809610416
+dynamic,1,L,,L_0.50_FWD:steady_rpm,11.884329126858757
+dynamic,1,L,,L_0.50_FWD:initial_rpm,0.0
+dynamic,1,L,,L_0.50_FWD:final_rpm,11.13
+dynamic,1,L,,L_0.50_FWD:fit_r2,0.6938858825206888
+dynamic,1,L,,L_0.50_FWD:fit_rmse_rpm,2.1750127222133835
+dynamic,1,L,,L_0.50_FWD:n_samples,300.0
+dynamic,1,L,,L_0.80_FWD:command,0.8
+dynamic,1,L,,L_0.80_FWD:tau_s,0.20565592647152334
+dynamic,1,L,,L_0.80_FWD:rise_time_s,0.25007599999999996
+dynamic,1,L,,L_0.80_FWD:settling_time_s,
+dynamic,1,L,,L_0.80_FWD:overshoot_pct,12.340473892644575
+dynamic,1,L,,L_0.80_FWD:steady_rpm,72.5028096978082
+dynamic,1,L,,L_0.80_FWD:initial_rpm,0.0
+dynamic,1,L,,L_0.80_FWD:final_rpm,69.73
+dynamic,1,L,,L_0.80_FWD:fit_r2,0.5641673913080334
+dynamic,1,L,,L_0.80_FWD:fit_rmse_rpm,11.77067108552356
+dynamic,1,L,,L_0.80_FWD:n_samples,300.0
+dynamic,1,L,,L_0.60_REV:command,-0.6
+dynamic,1,L,,L_0.60_REV:tau_s,0.3387180640911489
+dynamic,1,L,,L_0.60_REV:rise_time_s,0.35018200000000005
+dynamic,1,L,,L_0.60_REV:settling_time_s,
+dynamic,1,L,,L_0.60_REV:overshoot_pct,21.407411407440044
+dynamic,1,L,,L_0.60_REV:steady_rpm,-31.8514327516831
+dynamic,1,L,,L_0.60_REV:initial_rpm,0.0
+dynamic,1,L,,L_0.60_REV:final_rpm,-32.81
+dynamic,1,L,,L_0.60_REV:fit_r2,0.6112879358691518
+dynamic,1,L,,L_0.60_REV:fit_rmse_rpm,6.324683320234425
+dynamic,1,L,,L_0.60_REV:n_samples,300.0
+dynamic,1,R,,R_0.50_FWD:command,0.5
+dynamic,1,R,,R_0.50_FWD:tau_s,0.4539220790420045
+dynamic,1,R,,R_0.50_FWD:rise_time_s,1.050445
+dynamic,1,R,,R_0.50_FWD:settling_time_s,
+dynamic,1,R,,R_0.50_FWD:overshoot_pct,8.36459329585865
+dynamic,1,R,,R_0.50_FWD:steady_rpm,14.05440609039045
+dynamic,1,R,,R_0.50_FWD:initial_rpm,0.0
+dynamic,1,R,,R_0.50_FWD:final_rpm,14.94
+dynamic,1,R,,R_0.50_FWD:fit_r2,0.9579159694193317
+dynamic,1,R,,R_0.50_FWD:fit_rmse_rpm,0.6856741806353993
+dynamic,1,R,,R_0.50_FWD:n_samples,300.0
+dynamic,1,R,,R_0.80_FWD:command,0.8
+dynamic,1,R,,R_0.80_FWD:tau_s,0.22035363928670548
+dynamic,1,R,,R_0.80_FWD:rise_time_s,0.45025400000000004
+dynamic,1,R,,R_0.80_FWD:settling_time_s,2.9314
+dynamic,1,R,,R_0.80_FWD:overshoot_pct,3.679143439297501
+dynamic,1,R,,R_0.80_FWD:steady_rpm,78.27032256252392
+dynamic,1,R,,R_0.80_FWD:initial_rpm,0.0
+dynamic,1,R,,R_0.80_FWD:final_rpm,77.64
+dynamic,1,R,,R_0.80_FWD:fit_r2,0.9726450898209981
+dynamic,1,R,,R_0.80_FWD:fit_rmse_rpm,2.532749676896709
+dynamic,1,R,,R_0.80_FWD:n_samples,300.0
+dynamic,1,R,,R_0.60_REV:command,-0.6
+dynamic,1,R,,R_0.60_REV:tau_s,0.2896909940085774
+dynamic,1,R,,R_0.60_REV:rise_time_s,0.6002430000000001
+dynamic,1,R,,R_0.60_REV:settling_time_s,
+dynamic,1,R,,R_0.60_REV:overshoot_pct,8.295605996329012
+dynamic,1,R,,R_0.60_REV:steady_rpm,-35.70781994729392
+dynamic,1,R,,R_0.60_REV:initial_rpm,0.0
+dynamic,1,R,,R_0.60_REV:final_rpm,-37.21
+dynamic,1,R,,R_0.60_REV:fit_r2,0.9653387597929388
+dynamic,1,R,,R_0.60_REV:fit_rmse_rpm,1.4283041135562682
+dynamic,1,R,,R_0.60_REV:n_samples,300.0
+dynamic,2,L,,L_0.50_FWD:command,0.5
+dynamic,2,L,,L_0.50_FWD:tau_s,0.33742751453071934
+dynamic,2,L,,L_0.50_FWD:rise_time_s,0.550197
+dynamic,2,L,,L_0.50_FWD:settling_time_s,2.981206
+dynamic,2,L,,L_0.50_FWD:overshoot_pct,15.410236798152516
+dynamic,2,L,,L_0.50_FWD:steady_rpm,28.33396817972897
+dynamic,2,L,,L_0.50_FWD:initial_rpm,1.17
+dynamic,2,L,,L_0.50_FWD:final_rpm,28.12
+dynamic,2,L,,L_0.50_FWD:fit_r2,0.9332177705254617
+dynamic,2,L,,L_0.50_FWD:fit_rmse_rpm,1.6819073186044293
+dynamic,2,L,,L_0.50_FWD:n_samples,300.0
+dynamic,2,L,,L_0.80_FWD:command,0.8
+dynamic,2,L,,L_0.80_FWD:tau_s,0.19364719851628368
+dynamic,2,L,,L_0.80_FWD:rise_time_s,0.250122
+dynamic,2,L,,L_0.80_FWD:settling_time_s,2.931212
+dynamic,2,L,,L_0.80_FWD:overshoot_pct,4.368376126662481
+dynamic,2,L,,L_0.80_FWD:steady_rpm,84.77663760200677
+dynamic,2,L,,L_0.80_FWD:initial_rpm,0.0
+dynamic,2,L,,L_0.80_FWD:final_rpm,86.43
+dynamic,2,L,,L_0.80_FWD:fit_r2,0.9446087366293866
+dynamic,2,L,,L_0.80_FWD:fit_rmse_rpm,3.926053221117829
+dynamic,2,L,,L_0.80_FWD:n_samples,300.0
+dynamic,2,L,,L_0.60_REV:command,-0.6
+dynamic,2,L,,L_0.60_REV:tau_s,0.28801738909479824
+dynamic,2,L,,L_0.60_REV:rise_time_s,0.45018700000000006
+dynamic,2,L,,L_0.60_REV:settling_time_s,2.781241
+dynamic,2,L,,L_0.60_REV:overshoot_pct,6.807132997655309
+dynamic,2,L,,L_0.60_REV:steady_rpm,-46.08306450944667
+dynamic,2,L,,L_0.60_REV:initial_rpm,0.0
+dynamic,2,L,,L_0.60_REV:final_rpm,-46.29
+dynamic,2,L,,L_0.60_REV:fit_r2,0.9719063747612007
+dynamic,2,L,,L_0.60_REV:fit_rmse_rpm,1.6640361088310438
+dynamic,2,L,,L_0.60_REV:n_samples,300.0
+dynamic,2,R,,R_0.50_FWD:command,0.5
+dynamic,2,R,,R_0.50_FWD:tau_s,0.40343028430891426
+dynamic,2,R,,R_0.50_FWD:rise_time_s,0.85036
+dynamic,2,R,,R_0.50_FWD:settling_time_s,
+dynamic,2,R,,R_0.50_FWD:overshoot_pct,4.770595927488114
+dynamic,2,R,,R_0.50_FWD:steady_rpm,28.519452175952107
+dynamic,2,R,,R_0.50_FWD:initial_rpm,0.0
+dynamic,2,R,,R_0.50_FWD:final_rpm,26.66
+dynamic,2,R,,R_0.50_FWD:fit_r2,0.9799413800529065
+dynamic,2,R,,R_0.50_FWD:fit_rmse_rpm,0.9538093005803555
+dynamic,2,R,,R_0.50_FWD:n_samples,300.0
+dynamic,2,R,,R_0.80_FWD:command,0.8
+dynamic,2,R,,R_0.80_FWD:tau_s,0.1971527218625057
+dynamic,2,R,,R_0.80_FWD:rise_time_s,0.30015800000000004
+dynamic,2,R,,R_0.80_FWD:settling_time_s,
+dynamic,2,R,,R_0.80_FWD:overshoot_pct,3.200924741761236
+dynamic,2,R,,R_0.80_FWD:steady_rpm,82.32484370909917
+dynamic,2,R,,R_0.80_FWD:initial_rpm,0.0
+dynamic,2,R,,R_0.80_FWD:final_rpm,79.98
+dynamic,2,R,,R_0.80_FWD:fit_r2,0.9680595153976684
+dynamic,2,R,,R_0.80_FWD:fit_rmse_rpm,2.8135582636575416
+dynamic,2,R,,R_0.80_FWD:n_samples,300.0
+dynamic,2,R,,R_0.60_REV:command,-0.6
+dynamic,2,R,,R_0.60_REV:tau_s,0.29033171575620237
+dynamic,2,R,,R_0.60_REV:rise_time_s,0.6002419999999999
+dynamic,2,R,,R_0.60_REV:settling_time_s,
+dynamic,2,R,,R_0.60_REV:overshoot_pct,3.3157600278379746
+dynamic,2,R,,R_0.60_REV:steady_rpm,-48.492117743218245
+dynamic,2,R,,R_0.60_REV:initial_rpm,0.0
+dynamic,2,R,,R_0.60_REV:final_rpm,-47.17
+dynamic,2,R,,R_0.60_REV:fit_r2,0.9797881103859825
+dynamic,2,R,,R_0.60_REV:fit_rmse_rpm,1.4573567033626342
+dynamic,2,R,,R_0.60_REV:n_samples,300.0
+dynamic,3,L,,L_0.50_FWD:command,0.5
+dynamic,3,L,,L_0.50_FWD:tau_s,0.32523066740540296
+dynamic,3,L,,L_0.50_FWD:rise_time_s,0.6502730000000001
+dynamic,3,L,,L_0.50_FWD:settling_time_s,
+dynamic,3,L,,L_0.50_FWD:overshoot_pct,5.144022443887946
+dynamic,3,L,,L_0.50_FWD:steady_rpm,24.518749997184077
+dynamic,3,L,,L_0.50_FWD:initial_rpm,0.0
+dynamic,3,L,,L_0.50_FWD:final_rpm,23.73
+dynamic,3,L,,L_0.50_FWD:fit_r2,0.9784877149891229
+dynamic,3,L,,L_0.50_FWD:fit_rmse_rpm,0.8037743225327948
+dynamic,3,L,,L_0.50_FWD:n_samples,300.0
+dynamic,3,L,,L_0.80_FWD:command,0.8
+dynamic,3,L,,L_0.80_FWD:tau_s,0.2102846108034862
+dynamic,3,L,,L_0.80_FWD:rise_time_s,0.35018499999999997
+dynamic,3,L,,L_0.80_FWD:settling_time_s,2.681343
+dynamic,3,L,,L_0.80_FWD:overshoot_pct,2.3195898757993683
+dynamic,3,L,,L_0.80_FWD:steady_rpm,81.0304264321625
+dynamic,3,L,,L_0.80_FWD:initial_rpm,0.0
+dynamic,3,L,,L_0.80_FWD:final_rpm,80.57
+dynamic,3,L,,L_0.80_FWD:fit_r2,0.9734504362275196
+dynamic,3,L,,L_0.80_FWD:fit_rmse_rpm,2.5682495514159234
+dynamic,3,L,,L_0.80_FWD:n_samples,300.0
+dynamic,3,L,,L_0.60_REV:command,-0.6
+dynamic,3,L,,L_0.60_REV:tau_s,0.34143595401523336
+dynamic,3,L,,L_0.60_REV:rise_time_s,0.600332
+dynamic,3,L,,L_0.60_REV:settling_time_s,2.881376
+dynamic,3,L,,L_0.60_REV:overshoot_pct,4.001063614234327
+dynamic,3,L,,L_0.60_REV:steady_rpm,-46.75913717611649
+dynamic,3,L,,L_0.60_REV:initial_rpm,0.0
+dynamic,3,L,,L_0.60_REV:final_rpm,-46.29
+dynamic,3,L,,L_0.60_REV:fit_r2,0.9815444998569416
+dynamic,3,L,,L_0.60_REV:fit_rmse_rpm,1.4181228750049124
+dynamic,3,L,,L_0.60_REV:n_samples,300.0
+dynamic,3,R,,R_0.50_FWD:command,0.5
+dynamic,3,R,,R_0.50_FWD:tau_s,0.29177063201192527
+dynamic,3,R,,R_0.50_FWD:rise_time_s,0.500204
+dynamic,3,R,,R_0.50_FWD:settling_time_s,
+dynamic,3,R,,R_0.50_FWD:overshoot_pct,10.80032842883566
+dynamic,3,R,,R_0.50_FWD:steady_rpm,17.454821907339028
+dynamic,3,R,,R_0.50_FWD:initial_rpm,0.0
+dynamic,3,R,,R_0.50_FWD:final_rpm,18.46
+dynamic,3,R,,R_0.50_FWD:fit_r2,0.9520691560476536
+dynamic,3,R,,R_0.50_FWD:fit_rmse_rpm,0.8415617648646976
+dynamic,3,R,,R_0.50_FWD:n_samples,300.0
+dynamic,3,R,,R_0.80_FWD:command,0.8
+dynamic,3,R,,R_0.80_FWD:tau_s,0.18305216922629192
+dynamic,3,R,,R_0.80_FWD:rise_time_s,0.45020200000000005
+dynamic,3,R,,R_0.80_FWD:settling_time_s,
+dynamic,3,R,,R_0.80_FWD:overshoot_pct,7.2369693594471585
+dynamic,3,R,,R_0.80_FWD:steady_rpm,74.31205905576034
+dynamic,3,R,,R_0.80_FWD:initial_rpm,0.0
+dynamic,3,R,,R_0.80_FWD:final_rpm,76.46
+dynamic,3,R,,R_0.80_FWD:fit_r2,0.95456348972348
+dynamic,3,R,,R_0.80_FWD:fit_rmse_rpm,2.873260615422008
+dynamic,3,R,,R_0.80_FWD:n_samples,300.0
+dynamic,3,R,,R_0.60_REV:command,-0.6
+dynamic,3,R,,R_0.60_REV:tau_s,0.30909626856638306
+dynamic,3,R,,R_0.60_REV:rise_time_s,0.6002890000000001
+dynamic,3,R,,R_0.60_REV:settling_time_s,2.931319
+dynamic,3,R,,R_0.60_REV:overshoot_pct,10.995257878723956
+dynamic,3,R,,R_0.60_REV:steady_rpm,-38.533177738756656
+dynamic,3,R,,R_0.60_REV:initial_rpm,0.0
+dynamic,3,R,,R_0.60_REV:final_rpm,-39.26
+dynamic,3,R,,R_0.60_REV:fit_r2,0.9563779659388559
+dynamic,3,R,,R_0.60_REV:fit_rmse_rpm,1.7263862234622718
+dynamic,3,R,,R_0.60_REV:n_samples,300.0
+dynamic,4,L,,L_0.50_FWD:command,0.5
+dynamic,4,L,,L_0.50_FWD:tau_s,0.33897651350196306
+dynamic,4,L,,L_0.50_FWD:rise_time_s,0.750281
+dynamic,4,L,,L_0.50_FWD:settling_time_s,
+dynamic,4,L,,L_0.50_FWD:overshoot_pct,17.46227599912109
+dynamic,4,L,,L_0.50_FWD:steady_rpm,30.76990218431086
+dynamic,4,L,,L_0.50_FWD:initial_rpm,0.59
+dynamic,4,L,,L_0.50_FWD:final_rpm,28.12
+dynamic,4,L,,L_0.50_FWD:fit_r2,0.8911752101790781
+dynamic,4,L,,L_0.50_FWD:fit_rmse_rpm,2.3610157267496947
+dynamic,4,L,,L_0.50_FWD:n_samples,300.0
+dynamic,4,L,,L_0.80_FWD:command,0.8
+dynamic,4,L,,L_0.80_FWD:tau_s,0.2149235029284168
+dynamic,4,L,,L_0.80_FWD:rise_time_s,0.35016100000000006
+dynamic,4,L,,L_0.80_FWD:settling_time_s,
+dynamic,4,L,,L_0.80_FWD:overshoot_pct,7.9782315207305965
+dynamic,4,L,,L_0.80_FWD:steady_rpm,92.7964818360289
+dynamic,4,L,,L_0.80_FWD:initial_rpm,0.0
+dynamic,4,L,,L_0.80_FWD:final_rpm,87.01
+dynamic,4,L,,L_0.80_FWD:fit_r2,0.9165332300886334
+dynamic,4,L,,L_0.80_FWD:fit_rmse_rpm,5.347332863672332
+dynamic,4,L,,L_0.80_FWD:n_samples,300.0
+dynamic,4,L,,L_0.60_REV:command,-0.6
+dynamic,4,L,,L_0.60_REV:tau_s,0.3200239741187025
+dynamic,4,L,,L_0.60_REV:rise_time_s,0.700341
+dynamic,4,L,,L_0.60_REV:settling_time_s,2.981182
+dynamic,4,L,,L_0.60_REV:overshoot_pct,9.088033515388588
+dynamic,4,L,,L_0.60_REV:steady_rpm,-53.44307539632737
+dynamic,4,L,,L_0.60_REV:initial_rpm,0.0
+dynamic,4,L,,L_0.60_REV:final_rpm,-53.32
+dynamic,4,L,,L_0.60_REV:fit_r2,0.9288181498814141
+dynamic,4,L,,L_0.60_REV:fit_rmse_rpm,3.1455929872609416
+dynamic,4,L,,L_0.60_REV:n_samples,300.0
+dynamic,4,R,,R_0.50_FWD:command,0.5
+dynamic,4,R,,R_0.50_FWD:tau_s,0.30561271552120167
+dynamic,4,R,,R_0.50_FWD:rise_time_s,0.550228
+dynamic,4,R,,R_0.50_FWD:settling_time_s,
+dynamic,4,R,,R_0.50_FWD:overshoot_pct,7.928877726135219
+dynamic,4,R,,R_0.50_FWD:steady_rpm,29.046906315054297
+dynamic,4,R,,R_0.50_FWD:initial_rpm,0.0
+dynamic,4,R,,R_0.50_FWD:final_rpm,31.35
+dynamic,4,R,,R_0.50_FWD:fit_r2,0.9778143679034651
+dynamic,4,R,,R_0.50_FWD:fit_rmse_rpm,0.9498697620400458
+dynamic,4,R,,R_0.50_FWD:n_samples,300.0
+dynamic,4,R,,R_0.80_FWD:command,0.8
+dynamic,4,R,,R_0.80_FWD:tau_s,0.21714295745164247
+dynamic,4,R,,R_0.80_FWD:rise_time_s,0.350206
+dynamic,4,R,,R_0.80_FWD:settling_time_s,2.931213
+dynamic,4,R,,R_0.80_FWD:overshoot_pct,3.2681349304434715
+dynamic,4,R,,R_0.80_FWD:steady_rpm,91.06390859420566
+dynamic,4,R,,R_0.80_FWD:initial_rpm,0.0
+dynamic,4,R,,R_0.80_FWD:final_rpm,92.58
+dynamic,4,R,,R_0.80_FWD:fit_r2,0.9724911980159893
+dynamic,4,R,,R_0.80_FWD:fit_rmse_rpm,2.9627074563327254
+dynamic,4,R,,R_0.80_FWD:n_samples,300.0
+dynamic,4,R,,R_0.60_REV:command,-0.6
+dynamic,4,R,,R_0.60_REV:tau_s,0.2866513623027041
+dynamic,4,R,,R_0.60_REV:rise_time_s,0.550282
+dynamic,4,R,,R_0.60_REV:settling_time_s,
+dynamic,4,R,,R_0.60_REV:overshoot_pct,2.177890784120809
+dynamic,4,R,,R_0.60_REV:steady_rpm,-51.322257288315015
+dynamic,4,R,,R_0.60_REV:initial_rpm,0.0
+dynamic,4,R,,R_0.60_REV:final_rpm,-52.44
+dynamic,4,R,,R_0.60_REV:fit_r2,0.9840742064071614
+dynamic,4,R,,R_0.60_REV:fit_rmse_rpm,1.3714232359638299
+dynamic,4,R,,R_0.60_REV:n_samples,300.0
+```
+
+
+```
+$ cat dynamic_steps.csv
+robot,side,transition,command,tau_s,rise_time_s,settling_time_s,overshoot_pct,steady_rpm,initial_rpm,final_rpm,fit_r2,fit_rmse_rpm,n_samples
+1,L,L_0.50_FWD,0.5,0.38450771235671183,0.04999999999999999,,25.711765809610416,11.884329126858757,0.0,11.13,0.6938858825206888,2.1750127222133835,300
+1,L,L_0.80_FWD,0.8,0.20565592647152334,0.25007599999999996,,12.340473892644575,72.5028096978082,0.0,69.73,0.5641673913080334,11.77067108552356,300
+1,L,L_0.60_REV,-0.6,0.3387180640911489,0.35018200000000005,,21.407411407440044,-31.8514327516831,0.0,-32.81,0.6112879358691518,6.324683320234425,300
+1,R,R_0.50_FWD,0.5,0.4539220790420045,1.050445,,8.36459329585865,14.05440609039045,0.0,14.94,0.9579159694193317,0.6856741806353993,300
+1,R,R_0.80_FWD,0.8,0.22035363928670548,0.45025400000000004,2.9314,3.679143439297501,78.27032256252392,0.0,77.64,0.9726450898209981,2.532749676896709,300
+1,R,R_0.60_REV,-0.6,0.2896909940085774,0.6002430000000001,,8.295605996329012,-35.70781994729392,0.0,-37.21,0.9653387597929388,1.4283041135562682,300
+2,L,L_0.50_FWD,0.5,0.33742751453071934,0.550197,2.981206,15.410236798152516,28.33396817972897,1.17,28.12,0.9332177705254617,1.6819073186044293,300
+2,L,L_0.80_FWD,0.8,0.19364719851628368,0.250122,2.931212,4.368376126662481,84.77663760200677,0.0,86.43,0.9446087366293866,3.926053221117829,300
+2,L,L_0.60_REV,-0.6,0.28801738909479824,0.45018700000000006,2.781241,6.807132997655309,-46.08306450944667,0.0,-46.29,0.9719063747612007,1.6640361088310438,300
+2,R,R_0.50_FWD,0.5,0.40343028430891426,0.85036,,4.770595927488114,28.519452175952107,0.0,26.66,0.9799413800529065,0.9538093005803555,300
+2,R,R_0.80_FWD,0.8,0.1971527218625057,0.30015800000000004,,3.200924741761236,82.32484370909917,0.0,79.98,0.9680595153976684,2.8135582636575416,300
+2,R,R_0.60_REV,-0.6,0.29033171575620237,0.6002419999999999,,3.3157600278379746,-48.492117743218245,0.0,-47.17,0.9797881103859825,1.4573567033626342,300
+3,L,L_0.50_FWD,0.5,0.32523066740540296,0.6502730000000001,,5.144022443887946,24.518749997184077,0.0,23.73,0.9784877149891229,0.8037743225327948,300
+3,L,L_0.80_FWD,0.8,0.2102846108034862,0.35018499999999997,2.681343,2.3195898757993683,81.0304264321625,0.0,80.57,0.9734504362275196,2.5682495514159234,300
+3,L,L_0.60_REV,-0.6,0.34143595401523336,0.600332,2.881376,4.001063614234327,-46.75913717611649,0.0,-46.29,0.9815444998569416,1.4181228750049124,300
+3,R,R_0.50_FWD,0.5,0.29177063201192527,0.500204,,10.80032842883566,17.454821907339028,0.0,18.46,0.9520691560476536,0.8415617648646976,300
+3,R,R_0.80_FWD,0.8,0.18305216922629192,0.45020200000000005,,7.2369693594471585,74.31205905576034,0.0,76.46,0.95456348972348,2.873260615422008,300
+3,R,R_0.60_REV,-0.6,0.30909626856638306,0.6002890000000001,2.931319,10.995257878723956,-38.533177738756656,0.0,-39.26,0.9563779659388559,1.7263862234622718,300
+4,L,L_0.50_FWD,0.5,0.33897651350196306,0.750281,,17.46227599912109,30.76990218431086,0.59,28.12,0.8911752101790781,2.3610157267496947,300
+4,L,L_0.80_FWD,0.8,0.2149235029284168,0.35016100000000006,,7.9782315207305965,92.7964818360289,0.0,87.01,0.9165332300886334,5.347332863672332,300
+4,L,L_0.60_REV,-0.6,0.3200239741187025,0.700341,2.981182,9.088033515388588,-53.44307539632737,0.0,-53.32,0.9288181498814141,3.1455929872609416,300
+4,R,R_0.50_FWD,0.5,0.30561271552120167,0.550228,,7.928877726135219,29.046906315054297,0.0,31.35,0.9778143679034651,0.9498697620400458,300
+4,R,R_0.80_FWD,0.8,0.21714295745164247,0.350206,2.931213,3.2681349304434715,91.06390859420566,0.0,92.58,0.9724911980159893,2.9627074563327254,300
+4,R,R_0.60_REV,-0.6,0.2866513623027041,0.550282,,2.177890784120809,-51.322257288315015,0.0,-52.44,0.9840742064071614,1.3714232359638299,300
+```
+
+
+```
+$ cat static_levels.csv
+robot,phase,side,direction,level_index,command_pwm_expected,command_pwm_mean,command_pwm_std,rpm_mean,rpm_std,rpm_median,rpm_min,rpm_max,n_samples
+1,1,L,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,0.0,0.16884452782447876,0.0,-0.29,0.29,60
+1,1,L,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,0.024166666666666663,0.2520915334614351,0.0,-0.29,0.29,60
+1,1,L,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.0,0.20679146951556482,0.0,-0.29,0.29,60
+1,1,L,FWD,3,0.25,0.25,0.0,-3.7007434154171884e-18,0.16884452782447876,0.0,-0.29,0.29,60
+1,1,L,FWD,4,0.3,0.30000000000000004,5.597960807009036e-17,-1.8503717077085942e-18,0.20679146951556482,0.0,-0.29,0.29,60
+1,1,L,FWD,5,0.35,0.35000000000000014,1.679388242102711e-16,0.0,0.20679146951556482,0.0,-0.29,0.29,60
+1,1,L,FWD,6,0.4,0.39999999999999986,1.679388242102711e-16,-1.8503717077085942e-18,0.16884452782447876,0.0,-0.29,0.29,60
+1,1,L,FWD,7,0.45,0.45,0.0,0.0,0.16884452782447876,0.0,-0.29,0.29,60
+1,1,L,FWD,8,0.5,0.5,0.0,8.179166666666665,3.734414977742659,9.67,0.0,10.55,60
+1,1,L,FWD,9,0.55,0.5499999999999999,1.1195921614018072e-16,18.06666666666667,1.0591276657841489,18.165,16.41,20.21,60
+1,1,L,FWD,10,0.6,0.6000000000000001,1.1195921614018072e-16,27.003333333333327,2.098713622688073,27.395,23.44,29.59,60
+1,1,L,FWD,11,0.65,0.6499999999999999,1.1195921614018072e-16,40.222500000000004,2.581627147520254,40.285,35.16,44.53,60
+1,1,L,FWD,12,0.75,0.75,0.0,64.37833333333333,2.0793897138153072,64.89500000000001,60.64,67.38,60
+1,1,L,FWD,13,0.9,0.9,0.0,84.20416666666665,17.347933232214682,89.795,29.3,95.8,60
+1,2,L,REV,0,0.1,-0.09999999999999996,4.198470605256777e-17,-0.04916666666666667,0.451709715045699,0.0,-0.59,0.59,60
+1,2,L,REV,1,0.15,-0.15000000000000002,2.798980403504518e-17,-3.7007434154171884e-18,0.469312515588638,0.0,-0.88,0.59,60
+1,2,L,REV,2,0.2,-0.19999999999999993,8.396941210513554e-17,-3.7007434154171884e-18,0.34351128074635334,0.0,-0.59,0.59,60
+1,2,L,REV,3,0.25,-0.25,0.0,0.0,0.24289915602982237,0.0,-0.59,0.59,60
+1,2,L,REV,4,0.3,-0.30000000000000004,5.597960807009036e-17,0.049166666666666664,0.451709715045699,0.0,-0.59,0.59,60
+1,2,L,REV,5,0.35,-0.3508333333333334,0.006454972243679034,0.0,0.4207136793592525,0.0,-0.59,0.59,60
+1,2,L,REV,6,0.4,-0.4008333333333332,0.006454972243679027,0.04916666666666667,0.293328598446634,0.0,-0.59,0.59,60
+1,2,L,REV,7,0.45,-0.45083333333333336,0.006454972243679026,0.049166666666666664,0.29332859844663406,0.0,-0.59,0.59,60
+1,2,L,REV,8,0.5,-0.5008333333333334,0.006454972243679034,-1.1102230246251566e-17,0.42071367935925263,0.0,-0.59,0.59,60
+1,2,L,REV,9,0.55,-0.5508333333333333,0.0064549722436790195,-19.213333333333328,0.9368205635881305,-19.335,-20.8,-17.58,60
+1,2,L,REV,10,0.6,-0.6008333333333334,0.006454972243679034,-24.8475,9.048287716094155,-28.42,-31.35,-0.29,60
+1,2,L,REV,11,0.65,-0.6516666666666666,0.012909944487358055,-43.09333333333333,1.8771703070264878,-43.655,-46.29,-40.14,60
+1,2,L,REV,12,0.75,-0.7525,0.019364916731037088,-59.301666666666684,11.472859523663557,-63.725,-67.09,-33.69,60
+1,2,L,REV,13,0.9,-0.9,0.0,-79.79338983050846,16.12910376651255,-83.5,-88.18,-28.12,59
+1,3,R,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,0.0,0.0,0.0,0.0,0.0,60
+1,3,R,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,0.0,0.0,0.0,0.0,0.0,60
+1,3,R,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+1,3,R,FWD,3,0.25,0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+1,3,R,FWD,4,0.3,0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+1,3,R,FWD,5,0.35,0.35000000000000014,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+1,3,R,FWD,6,0.4,0.39999999999999986,1.679388242102711e-16,0.004833333333333333,0.21015322631611782,0.0,-0.29,0.29,60
+1,3,R,FWD,7,0.45,0.45,0.0,0.5466666666666666,0.7178042475864205,0.0,0.0,2.05,60
+1,3,R,FWD,8,0.5,0.5,0.0,0.0,0.0,0.0,0.0,0.0,60
+1,3,R,FWD,9,0.55,0.5499999999999999,1.1195921614018072e-16,0.0,0.0,0.0,0.0,0.0,60
+1,3,R,FWD,10,0.6,0.6000000000000001,1.1195921614018072e-16,32.149833333333326,0.8225106081777737,32.23,31.02,33.98,60
+1,3,R,FWD,11,0.65,0.6499999999999999,1.1195921614018072e-16,45.06816666666667,1.8956243027496613,45.12,41.89,47.75,60
+1,3,R,FWD,12,0.75,0.75,0.0,66.64916666666667,1.0196498097206106,66.35499999999999,65.04,68.55,60
+1,3,R,FWD,13,0.9,0.9,0.0,95.31150000000001,2.0812144637369276,95.36,91.34,99.61,60
+1,4,R,REV,0,0.1,-0.09999999999999996,4.198470605256777e-17,-0.024166666666666663,0.0808281639677376,0.0,-0.29,0.0,60
+1,4,R,REV,1,0.15,-0.15000000000000002,2.798980403504518e-17,-0.004833333333333332,0.17294548633294207,0.0,-0.29,0.29,60
+1,4,R,REV,2,0.2,-0.19999999999999993,8.396941210513554e-17,0.0,0.0,0.0,0.0,0.0,60
+1,4,R,REV,3,0.25,-0.25,0.0,0.0,0.16884452782447876,0.0,-0.29,0.29,60
+1,4,R,REV,4,0.3,-0.3008333333333334,0.006454972243679027,-0.01933333333333333,0.09040148991322583,0.0,-0.29,0.29,60
+1,4,R,REV,5,0.35,-0.3508333333333334,0.006454972243679034,0.0,0.0,0.0,0.0,0.0,60
+1,4,R,REV,6,0.4,-0.4008333333333332,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+1,4,R,REV,7,0.45,-0.45083333333333336,0.006454972243679026,0.0,0.0,0.0,0.0,0.0,60
+1,4,R,REV,8,0.5,-0.5008333333333334,0.006454972243679034,0.0,0.0,0.0,0.0,0.0,60
+1,4,R,REV,9,0.55,-0.5508333333333333,0.0064549722436790195,-22.431500000000007,0.7316079921906874,-22.27,-23.44,-21.39,60
+1,4,R,REV,10,0.6,-0.6008333333333334,0.006454972243679034,-34.17933333333334,1.706753153705484,-34.129999999999995,-37.21,-31.64,60
+1,4,R,REV,11,0.65,-0.6516666666666666,0.012909944487358055,-45.27300000000002,0.8908086214221328,-44.97,-46.88,-43.95,60
+1,4,R,REV,12,0.75,-0.7525,0.019364916731037088,-66.70250000000001,1.3086292802854211,-66.5,-68.85,-64.16,60
+1,4,R,REV,13,0.9,-0.9,0.0,-95.20100000000001,1.5601463425491517,-94.92,-98.14,-92.77,60
+2,1,L,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,0.0,0.0,0.0,0.0,0.0,60
+2,1,L,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,0.0,0.0,0.0,0.0,0.0,60
+2,1,L,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.0,0.0,0.0,0.0,0.0,60
+2,1,L,FWD,3,0.25,0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+2,1,L,FWD,4,0.3,0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+2,1,L,FWD,5,0.35,0.35000000000000014,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+2,1,L,FWD,6,0.4,0.39999999999999986,1.679388242102711e-16,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+2,1,L,FWD,7,0.45,0.45,0.0,15.332499999999998,1.2683241645733465,15.379999999999999,13.18,17.29,60
+2,1,L,FWD,8,0.5,0.5,0.0,25.464166666666674,0.8037355405909582,25.49,24.02,26.66,60
+2,1,L,FWD,9,0.55,0.5499999999999999,1.1195921614018072e-16,34.807500000000005,0.8399064213411926,34.715,33.11,36.33,60
+2,1,L,FWD,10,0.6,0.6000000000000001,1.1195921614018072e-16,46.069999999999986,1.554119730134465,46.0,42.48,49.51,60
+2,1,L,FWD,11,0.65,0.6499999999999999,1.1195921614018072e-16,57.599166666666655,1.5179907456749546,58.155,54.86,59.18,60
+2,1,L,FWD,12,0.75,0.75,0.0,75.41416666666665,1.902458081381146,75.44,72.36,79.69,60
+2,1,L,FWD,13,0.9,0.9,0.0,96.53816666666665,2.623311719664872,97.12,90.53,100.49,60
+2,2,L,REV,0,0.1,-0.09999999999999996,4.198470605256777e-17,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,1,0.15,-0.15000000000000002,2.798980403504518e-17,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,2,0.2,-0.19999999999999993,8.396941210513554e-17,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,3,0.25,-0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,4,0.3,-0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,5,0.35,-0.35000000000000014,1.679388242102711e-16,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+2,2,L,REV,6,0.4,-0.39999999999999986,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,7,0.45,-0.45,0.0,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,8,0.5,-0.5,0.0,0.0,0.0,0.0,0.0,0.0,60
+2,2,L,REV,9,0.55,-0.5499999999999999,1.1195921614018072e-16,-32.52933333333333,0.8589328551857327,-32.81,-33.4,-30.18,60
+2,2,L,REV,10,0.6,-0.6000000000000001,1.1195921614018072e-16,-44.08316666666668,1.4741587565618655,-43.95,-46.0,-41.02,60
+2,2,L,REV,11,0.65,-0.6499999999999999,1.1195921614018072e-16,-55.156,1.7060383288956373,-55.37,-57.42,-52.44,60
+2,2,L,REV,12,0.75,-0.75,0.0,-76.26833333333333,1.5084835427905938,-76.315,-78.81,-74.12,60
+2,2,L,REV,13,0.9,-0.9,0.0,-97.74483333333336,2.3462869994132896,-97.12,-104.88,-95.21,60
+2,3,R,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,-0.01933333333333333,0.14975535605335344,0.0,-0.29,0.29,60
+2,3,R,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,-0.019333333333333327,0.18392948784024582,0.0,-0.29,0.29,60
+2,3,R,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+2,3,R,FWD,3,0.25,0.25,0.0,-0.014500000000000002,0.1454906951419277,0.0,-0.29,0.29,60
+2,3,R,FWD,4,0.3,0.30000000000000004,5.597960807009036e-17,0.0,0.16884452782447876,0.0,-0.29,0.29,60
+2,3,R,FWD,5,0.35,0.3508333333333334,0.006454972243679034,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+2,3,R,FWD,6,0.4,0.4008333333333332,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+2,3,R,FWD,7,0.45,0.45083333333333336,0.006454972243679026,0.0,0.0,0.0,0.0,0.0,60
+2,3,R,FWD,8,0.5,0.5008333333333334,0.006454972243679034,26.569666666666663,1.5123267141710746,26.95,23.14,28.71,60
+2,3,R,FWD,9,0.55,0.5508333333333333,0.0064549722436790195,37.983333333333334,1.1752340793403406,38.09,35.45,40.14,60
+2,3,R,FWD,10,0.6,0.6008333333333334,0.006454972243679034,49.153833333333324,0.9325836022262267,49.22,46.58,50.39,60
+2,3,R,FWD,11,0.65,0.6516666666666666,0.012909944487358055,59.56616666666669,0.8863753875664737,59.18,58.3,61.82,60
+2,3,R,FWD,12,0.75,0.7525,0.019364916731037088,76.91166666666668,1.2146202122009169,76.905,74.41,79.1,60
+2,3,R,FWD,13,0.9,0.9,0.0,90.23067796610168,1.6940950838506161,90.53,86.43,92.87,59
+2,4,R,REV,0,0.1,-0.09999999999999996,4.198470605256777e-17,0.0,0.16884452782447876,0.0,-0.29,0.29,60
+2,4,R,REV,1,0.15,-0.15000000000000002,2.798980403504518e-17,0.014499999999999997,0.13533918469997605,0.0,-0.29,0.29,60
+2,4,R,REV,2,0.2,-0.19999999999999993,8.396941210513554e-17,-0.014499999999999997,0.21639124171630753,0.0,-0.29,0.29,60
+2,4,R,REV,3,0.25,-0.25,0.0,0.009666666666666664,0.21335072316129217,0.0,-0.29,0.29,60
+2,4,R,REV,4,0.3,-0.30000000000000004,5.597960807009036e-17,-0.014499999999999994,0.19563391096291066,0.0,-0.29,0.29,60
+2,4,R,REV,5,0.35,-0.35000000000000014,1.679388242102711e-16,0.0,0.16884452782447876,0.0,-0.29,0.29,60
+2,4,R,REV,6,0.4,-0.39999999999999986,1.679388242102711e-16,0.009666666666666667,0.24448469964720065,0.0,-0.29,0.29,60
+2,4,R,REV,7,0.45,-0.45,0.0,-14.307166666666665,0.6255765927896662,-14.36,-15.23,-13.18,60
+2,4,R,REV,8,0.5,-0.5,0.0,-24.814499999999992,1.0340514772617073,-25.049999999999997,-26.37,-21.97,60
+2,4,R,REV,9,0.55,-0.5499999999999999,1.1195921614018072e-16,-34.84833333333333,1.1981329637690703,-34.86,-36.62,-32.23,60
+2,4,R,REV,10,0.6,-0.6008333333333334,0.006454972243679034,-47.23533333333334,1.019059830359882,-47.46,-48.63,-45.41,60
+2,4,R,REV,11,0.65,-0.6516666666666666,0.012909944487358055,-57.1975,0.9364658137588273,-57.13,-58.89,-55.08,60
+2,4,R,REV,12,0.75,-0.7525,0.019364916731037088,-75.86883333333334,1.2048251742742482,-75.88,-78.22,-74.12,60
+2,4,R,REV,13,0.9,-0.9,0.0,-91.82830508474576,1.3375171962057582,-91.99,-94.92,-89.06,59
+3,1,L,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,3,0.25,0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,4,0.3,0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,5,0.35,0.35000000000000014,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,6,0.4,0.39999999999999986,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,7,0.45,0.45,0.0,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,8,0.5,0.5,0.0,0.0,0.0,0.0,0.0,0.0,60
+3,1,L,FWD,9,0.55,0.5499999999999999,1.1195921614018072e-16,31.005000000000003,1.603542159603894,31.495,27.54,33.4,60
+3,1,L,FWD,10,0.6,0.6000000000000001,1.1195921614018072e-16,43.40750000000001,1.0442751520649813,43.36,41.89,45.7,60
+3,1,L,FWD,11,0.65,0.6499999999999999,1.1195921614018072e-16,54.10333333333333,1.294835460611308,54.64,50.98,55.66,60
+3,1,L,FWD,12,0.75,0.75,0.0,72.75416666666666,0.42457273305020277,72.66,72.07,73.54,60
+3,1,L,FWD,13,0.9,0.9,0.0,90.06333333333332,1.5275899559261061,90.53,87.01,92.87,60
+3,2,L,REV,0,0.1,-0.10083333333333332,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,1,0.15,-0.15083333333333335,0.00645497224367903,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,2,0.2,-0.20083333333333328,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,3,0.25,-0.25083333333333335,0.006454972243679026,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,4,0.3,-0.3008333333333334,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,5,0.35,-0.3508333333333334,0.006454972243679034,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,6,0.4,-0.4008333333333332,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,7,0.45,-0.45083333333333336,0.006454972243679026,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,8,0.5,-0.5008333333333334,0.006454972243679034,0.0,0.0,0.0,0.0,0.0,60
+3,2,L,REV,9,0.55,-0.5508333333333333,0.0064549722436790195,-31.98,1.721154519895274,-32.52,-34.28,-28.12,60
+3,2,L,REV,10,0.6,-0.6008333333333334,0.006454972243679034,-45.14166666666665,0.6867984350560785,-45.12,-46.58,-43.95,60
+3,2,L,REV,11,0.65,-0.6516666666666666,0.012909944487358055,-56.05416666666667,0.5438478465765861,-56.105000000000004,-57.13,-55.08,60
+3,2,L,REV,12,0.75,-0.7525,0.019364916731037088,-75.51166666666668,1.1436770414506214,-75.14500000000001,-77.34,-73.83,60
+3,2,L,REV,13,0.9,-0.9,0.0,-90.40711864406778,1.0899431349410045,-90.23,-93.16,-88.77,59
+3,3,R,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,0.03849999999999999,0.13655352213245786,0.0,-0.59,0.29,60
+3,3,R,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,0.01933333333333333,0.18392948784024582,0.0,-0.29,0.29,60
+3,3,R,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.019333333333333334,0.18392948784024582,0.0,-0.29,0.29,60
+3,3,R,FWD,3,0.25,0.25,0.0,0.024166666666666663,0.14417846364326078,0.0,-0.29,0.29,60
+3,3,R,FWD,4,0.3,0.3008333333333334,0.006454972243679027,1.8503717077085942e-18,0.16884452782447876,0.0,-0.29,0.29,60
+3,3,R,FWD,5,0.35,0.3508333333333334,0.006454972243679034,0.019333333333333334,0.18392948784024582,0.0,-0.29,0.29,60
+3,3,R,FWD,6,0.4,0.4008333333333332,0.006454972243679027,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+3,3,R,FWD,7,0.45,0.45083333333333336,0.006454972243679026,9.576000000000002,0.8833127169537432,9.67,7.32,11.13,60
+3,3,R,FWD,8,0.5,0.5008333333333334,0.006454972243679034,18.32550000000001,0.8267014811786965,18.16,16.11,19.63,60
+3,3,R,FWD,9,0.55,0.5508333333333333,0.0064549722436790195,26.87,0.7329531628849487,26.66,25.78,28.71,60
+3,3,R,FWD,10,0.6,0.6008333333333334,0.006454972243679034,39.09216666666667,1.4017774330297275,38.815,36.04,41.89,60
+3,3,R,FWD,11,0.65,0.6516666666666666,0.012909944487358055,49.23016666666667,1.9389010443772028,49.22,46.29,51.41,60
+3,3,R,FWD,12,0.75,0.7525,0.019364916731037088,67.451,2.613007034569917,67.53,63.87,71.19,60
+3,3,R,FWD,13,0.9,0.9,0.0,83.73399999999998,2.7005688038646194,83.94,79.39,89.36,60
+3,4,R,REV,0,0.1,-0.09999999999999996,4.198470605256777e-17,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,1,0.15,-0.15000000000000002,2.798980403504518e-17,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,2,0.2,-0.19999999999999993,8.396941210513554e-17,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,3,0.25,-0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,4,0.3,-0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,5,0.35,-0.35000000000000014,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,6,0.4,-0.39999999999999986,1.679388242102711e-16,-0.014499999999999997,0.09881372648763367,0.0,-0.29,0.29,60
+3,4,R,REV,7,0.45,-0.45,0.0,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,8,0.5,-0.5008333333333334,0.006454972243679034,0.0,0.0,0.0,0.0,0.0,60
+3,4,R,REV,9,0.55,-0.5508333333333333,0.0064549722436790195,-25.10816666666666,1.2228536945162698,-25.2,-27.54,-23.44,60
+3,4,R,REV,10,0.6,-0.6008333333333334,0.006454972243679034,-35.95433333333334,0.6343136332373227,-35.82,-36.91,-34.86,60
+3,4,R,REV,11,0.65,-0.6516666666666666,0.012909944487358055,-47.66633333333334,1.187849454974669,-47.9,-49.22,-45.12,60
+3,4,R,REV,12,0.75,-0.7525,0.019364916731037088,-65.83266666666667,1.380807755082935,-65.33,-68.26,-64.16,60
+3,4,R,REV,13,0.9,-0.9,0.0,-81.74366666666666,2.7863176395918265,-80.86,-86.43,-77.64,60
+4,1,L,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+4,1,L,FWD,3,0.25,0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,4,0.3,0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,5,0.35,0.35000000000000014,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,6,0.4,0.39999999999999986,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,7,0.45,0.45,0.0,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,8,0.5,0.5,0.0,0.0,0.0,0.0,0.0,0.0,60
+4,1,L,FWD,9,0.55,0.5499999999999999,1.1195921614018072e-16,37.67166666666666,2.4522864921432044,38.09,34.28,41.6,60
+4,1,L,FWD,10,0.6,0.6000000000000001,1.1195921614018072e-16,50.879166666666656,2.880420338715102,50.685,46.58,54.49,60
+4,1,L,FWD,11,0.65,0.6499999999999999,1.1195921614018072e-16,66.1375,4.211499843547829,67.235,58.89,71.48,60
+4,1,L,FWD,12,0.75,0.75,0.0,86.66999999999997,4.2525764872205425,87.01,78.81,91.99,60
+4,1,L,FWD,13,0.9,0.9,0.0,102.80666666666669,5.63559109638463,102.975,94.92,110.74,60
+4,2,L,REV,0,0.1,-0.10083333333333332,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,1,0.15,-0.15083333333333335,0.00645497224367903,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,2,0.2,-0.20083333333333328,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,3,0.25,-0.25083333333333335,0.006454972243679026,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,4,0.3,-0.3008333333333334,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,5,0.35,-0.3508333333333334,0.006454972243679034,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,6,0.4,-0.4008333333333332,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,7,0.45,-0.45083333333333336,0.006454972243679026,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,8,0.5,-0.5008333333333334,0.006454972243679034,0.0,0.0,0.0,0.0,0.0,60
+4,2,L,REV,9,0.55,-0.5508333333333333,0.0064549722436790195,-36.96333333333333,1.879376624621883,-36.91,-41.31,-34.57,60
+4,2,L,REV,10,0.6,-0.6008333333333334,0.006454972243679034,-52.78749999999999,2.6858105647700667,-53.61,-56.25,-48.63,60
+4,2,L,REV,11,0.65,-0.6516666666666666,0.012909944487358055,-64.28249999999998,3.6853101081483426,-64.745,-69.73,-58.01,60
+4,2,L,REV,12,0.75,-0.7525,0.019364916731037088,-84.30250000000002,4.453732247475524,-84.67,-90.23,-76.76,60
+4,2,L,REV,13,0.9,-0.9,0.0,-102.88049999999998,5.829037023996216,-102.245,-110.16,-93.16,60
+4,3,R,FWD,0,0.1,0.09999999999999996,4.198470605256777e-17,0.0008333333333333322,0.20917344734321883,0.0,-0.29,0.59,60
+4,3,R,FWD,1,0.15,0.15000000000000002,2.798980403504518e-17,0.0,0.0,0.0,0.0,0.0,60
+4,3,R,FWD,2,0.2,0.19999999999999993,8.396941210513554e-17,0.0,0.0,0.0,0.0,0.0,60
+4,3,R,FWD,3,0.25,0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+4,3,R,FWD,4,0.3,0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+4,3,R,FWD,5,0.35,0.35000000000000014,1.679388242102711e-16,0.0,0.0,0.0,0.0,0.0,60
+4,3,R,FWD,6,0.4,0.4008333333333332,0.006454972243679027,0.0,0.0,0.0,0.0,0.0,60
+4,3,R,FWD,7,0.45,0.45083333333333336,0.006454972243679026,0.0,0.0,0.0,0.0,0.0,60
+4,3,R,FWD,8,0.5,0.5008333333333334,0.006454972243679034,27.333999999999996,1.4424827937169622,27.25,24.32,30.18,60
+4,3,R,FWD,9,0.55,0.5508333333333333,0.0064549722436790195,38.83650000000001,0.6454372450425652,38.815,36.91,39.84,60
+4,3,R,FWD,10,0.6,0.6008333333333334,0.006454972243679034,49.567833333333354,0.6722239630489035,49.51,48.34,50.68,60
+4,3,R,FWD,11,0.65,0.6516666666666666,0.012909944487358055,60.52233333333333,0.5841214369524054,60.64,58.89,61.23,60
+4,3,R,FWD,12,0.75,0.7525,0.019364916731037088,83.83783333333334,1.3068335280579892,83.79,81.45,85.25,60
+4,3,R,FWD,13,0.9,0.9,0.0,104.16566666666668,0.814831513553708,104.3,102.54,105.47,60
+4,4,R,REV,0,0.1,-0.09999999999999996,4.198470605256777e-17,0.004833333333333333,0.2233071280687826,0.0,-0.29,0.29,60
+4,4,R,REV,1,0.15,-0.15000000000000002,2.798980403504518e-17,0.0,0.20679146951556482,0.0,-0.29,0.29,60
+4,4,R,REV,2,0.2,-0.19999999999999993,8.396941210513554e-17,0.0,0.0,0.0,0.0,0.0,60
+4,4,R,REV,3,0.25,-0.25,0.0,0.0,0.0,0.0,0.0,0.0,60
+4,4,R,REV,4,0.3,-0.30000000000000004,5.597960807009036e-17,0.0,0.0,0.0,0.0,0.0,60
+4,4,R,REV,5,0.35,-0.35000000000000014,1.679388242102711e-16,-0.009666666666666667,0.2325318761940558,0.0,-0.29,0.29,60
+4,4,R,REV,6,0.4,-0.39999999999999986,1.679388242102711e-16,0.0,0.11939111059092965,0.0,-0.29,0.29,60
+4,4,R,REV,7,0.45,-0.45,0.0,0.0,0.0,0.0,0.0,0.0,60
+4,4,R,REV,8,0.5,-0.5,0.0,-26.880499999999998,1.0802344770575179,-27.25,-28.71,-24.9,60
+4,4,R,REV,9,0.55,-0.5499999999999999,1.1195921614018072e-16,-38.09983333333332,0.9410641140042845,-38.38,-39.84,-35.74,60
+4,4,R,REV,10,0.6,-0.6000000000000001,1.1195921614018072e-16,-48.732333333333344,0.7250373845806484,-48.93,-49.8,-47.17,60
+4,4,R,REV,11,0.65,-0.6499999999999999,1.1195921614018072e-16,-60.31616666666665,0.6248093720587337,-60.64,-60.94,-59.18,60
+4,4,R,REV,12,0.75,-0.7525,0.019364916731037088,-80.73249999999999,0.8127284554959798,-80.57,-82.32,-79.27,60
+4,4,R,REV,13,0.9,-0.9,0.0,-100.19254237288133,0.8117745423800546,-99.9,-101.37,-99.32,59
+```
+
+
+```
+$ cat asymmetry.csv
+robot,level_pwm,direction,rpm_l_mean,rpm_r_mean,rpm_l_std,rpm_r_std,rpm_mismatch_pct,rpm_difference,n_samples
+1,0.45,FWD,-3.552713678800501e-18,0.0,0.4104089227477489,0.0,,-3.552713678800501e-18,125
+1,0.45,REV,0.0,0.0,0.0,0.0,,0.0,125
+1,0.6,FWD,29.87128,34.17456000000001,6.453281857743692,1.6509984779500997,13.438124943009594,-4.303280000000008,125
+1,0.6,REV,-29.465200000000003,-35.60175999999999,7.374221730395165,1.6189099598385686,18.862292014257278,6.136559999999989,125
+1,0.75,FWD,61.78271999999998,66.43296,10.269139438141837,1.5250129687444338,7.253777385106115,-4.650240000000011,125
+1,0.75,REV,-62.51928000000001,-68.69768,11.717172480126434,1.0975949778875038,9.417075353673786,6.178399999999996,125
+1,0.9,FWD,84.22887999999998,92.92984,14.475087008262653,2.105469445776114,9.822784901584324,-8.700960000000023,125
+1,0.9,REV,-80.35064516129033,-93.85814516129032,14.791815015416521,1.4604534137995753,15.507254226366296,13.507499999999993,124
+2,0.45,FWD,20.437600000000007,20.85935999999999,0.7311352198310648,0.8368563911178778,2.042571656606127,-0.4217599999999848,125
+2,0.45,REV,-19.271120000000003,-19.062240000000003,0.570319966787179,0.6145098545103428,1.0898079375249161,-0.20888000000000062,125
+2,0.6,FWD,48.569440000000014,51.32344000000002,0.9654292911078629,0.9248523020705304,5.5139064966392075,-2.754000000000005,125
+2,0.6,REV,-48.274240000000006,-49.18440000000001,1.1228041394134018,0.876117167005977,1.867787196702118,0.9101600000000047,125
+2,0.75,FWD,78.32000000000002,77.42991999999997,2.0392143490301167,1.3559644205057222,1.142960458663548,0.8900800000000544,125
+2,0.75,REV,-79.24815999999997,-76.77447999999997,1.6243779871573252,1.137603916557843,3.170924424814248,-2.4736800000000017,125
+2,0.9,FWD,94.53896000000003,89.94952000000002,2.646752369079096,1.6085225920179842,4.975313363739578,4.58944000000001,125
+2,0.9,REV,-98.0081451612903,-91.67330645161292,1.9227112323024282,1.5131229332129454,6.679449841627481,-6.334838709677385,124
+3,0.45,FWD,15.571119999999995,12.252640000000003,0.590086401546691,1.5033399074791285,23.853569754770685,3.318479999999992,125
+3,0.45,REV,-14.130640000000001,-11.804560000000002,1.5835728000010691,0.40459159814598544,17.937629168080438,-2.3260799999999993,125
+3,0.6,FWD,45.86327999999999,40.577920000000006,1.3389631135153943,1.9019693936006294,12.22879830451216,5.285359999999983,125
+3,0.6,REV,-46.54727999999999,-40.50919999999999,1.4626386760831243,1.7518490692095363,13.871638274370849,-6.038080000000001,125
+3,0.75,FWD,74.21959999999999,69.10288,1.4524020149060748,2.347083576724321,7.14014996112262,5.116719999999987,125
+3,0.75,REV,-75.07368000000002,-69.04744000000004,1.3700697745358723,2.6458052326337733,8.362743781064127,-6.026239999999987,125
+3,0.9,FWD,89.63719999999998,86.46392000000004,1.6022552653943338,3.1542099097616676,3.603929378756857,3.1732799999999344,125
+3,0.9,REV,-87.92459677419356,-83.92991935483869,1.3674392417908405,2.529378437086141,4.6489059575898235,-3.994677419354872,124
+4,0.45,FWD,22.628559999999997,22.2152,1.4600462343541085,0.5859244143700099,1.8435563833184252,0.4133599999999973,125
+4,0.45,REV,-21.955280000000002,-22.55424,2.600487725966655,0.7981412519501274,2.6913792824546214,0.5989599999999982,125
+4,0.6,FWD,53.8756,52.14047999999998,2.4022235667223253,0.621718295299147,3.2733147650809507,1.7351200000000162,125
+4,0.6,REV,-54.93063999999999,-52.753519999999995,3.3569787069193158,0.6021041813185573,4.043528778977326,-2.177119999999995,125
+4,0.75,FWD,86.87104000000004,84.17112,4.22644417463313,1.1466600981307233,3.1570228065408363,2.6999200000000343,125
+4,0.75,REV,-85.75703999999998,-82.72472000000003,4.826004161596003,1.064067497252725,3.59958253047682,-3.0323199999999417,125
+4,0.9,FWD,104.09624000000001,103.84895999999996,4.650999660842956,1.3606952824247251,0.2378318903249954,0.24728000000004613,125
+4,0.9,REV,-102.90725806451613,-103.50604838709674,5.729337897686731,1.1250364536449007,0.5801857766577464,0.5987903225806122,124
+```
+
+
+```
+$ cat coastdown.csv
+robot,side,segment,initial_abs_rpm,final_abs_rpm,decay_tau_s,decay_A_rpm,fit_r2,duration_s,n_samples
+1,L,FWD_COAST,66.21,0.0,0.23841791301819673,75.14799940272322,0.9334059070459303,3.991577,400
+1,R,FWD_COAST,70.61,0.29,0.2636302744817446,85.7236112278941,0.969901588790203,3.991577,400
+1,L,REV_COAST,59.18,0.0,0.23734231742438824,75.26532649141254,0.8872111624261585,3.991533,400
+1,R,REV_COAST,69.73,0.0,0.3050646946810148,83.44720884664865,0.930461622969739,3.991533,400
+2,L,FWD_COAST,82.32,0.0,0.3173684619485459,95.77114367971295,0.9553510811022179,3.991909,400
+2,R,FWD_COAST,77.34,0.0,0.30508014300845787,92.7127753704217,0.9687978082342947,3.991909,400
+2,L,REV_COAST,82.03,0.0,0.3240114925746784,95.62781334522062,0.9726198328715411,3.991594,400
+2,R,REV_COAST,79.1,0.0,0.3147142409422035,92.95103724832495,0.9737682807766135,3.991594,400
+3,L,FWD_COAST,75.29,0.0,0.28672986096273545,91.35315509758809,0.9588183557128053,3.991843,400
+3,R,FWD_COAST,70.02,0.0,0.26856436609583406,82.49652010130443,0.9417680308624187,3.991843,400
+3,L,REV_COAST,75.88,0.0,0.2988175721583799,89.07952687237895,0.9398999000515391,3.981769,399
+3,R,REV_COAST,71.19,0.0,0.27199915380145145,85.90309210337124,0.9247057410242386,3.981769,399
+4,L,FWD_COAST,92.58,0.0,0.3304756736280072,104.79445189945972,0.9680159261971949,3.991703,400
+4,R,FWD_COAST,87.01,0.0,0.3355616878743498,102.19847290572024,0.946356084577985,3.991703,400
+4,L,REV_COAST,88.18,0.0,0.3105466415058471,106.74482126807249,0.9497501775391483,3.99159,400
+4,R,REV_COAST,84.96,0.0,0.33514488869588904,98.33692761118488,0.9541007005970217,3.99159,400
+```
+
+
+```
+$ cat electrical.csv
+robot,phase,signal,mean,std,min,max,p05,p95,n_samples
+1,0,battery_voltage,7.656540000000001,0.014935680402920912,7.56,7.73,7.6395,7.67,500
+1,0,driver_voltage,7.730900000000002,0.00402770963325059,7.71,7.74,7.73,7.74,500
+1,0,driver_current,1.1416,0.10339642954805824,1.0,1.5,1.0,1.2,500
+1,0,driver_power,9.097,0.979903782442792,7.7,11.6,7.7,9.7,500
+1,1,battery_voltage,7.571720238095238,0.08465579859524068,6.67,7.9,7.46,7.63,1680
+1,1,driver_voltage,7.684958333333333,0.027896228654759523,7.57,7.73,7.63,7.72,1680
+1,1,driver_current,91.20125,58.04323431936858,1.0,372.0,32.5,214.8,1680
+1,1,driver_power,699.352976190476,441.79054010386466,7.7,2817.4,250.7,1637.185,1680
+1,2,battery_voltage,7.569291244788564,0.10862631426570894,5.96,8.0,7.46,7.63,1679
+1,2,driver_voltage,7.682406194163192,0.02796514704224848,7.55,7.72,7.63,7.710999999999999,1679
+1,2,driver_current,89.56015485407981,58.35966217742775,27.3,364.8,29.8,210.22999999999996,1679
+1,2,driver_power,686.4980941036331,444.2679003337126,209.8,2760.2,229.4,1602.9099999999999,1679
+1,3,battery_voltage,7.565446428571429,0.09328453395662184,6.16,7.86,7.46,7.63,1680
+1,3,driver_voltage,7.675958333333334,0.027490396648314794,7.57,7.72,7.62,7.71,1680
+1,3,driver_current,95.49517857142858,56.64628078023947,34.2,362.2,35.2,205.81,1680
+1,3,driver_power,731.5169642857143,430.7066013312616,263.9,2744.5,271.8,1569.62,1680
+1,4,battery_voltage,7.561691483025611,0.11103853712643888,6.13,8.1,7.46,7.63,1679
+1,4,driver_voltage,7.673305539011316,0.02668799842857234,7.56,7.71,7.62,7.7,1679
+1,4,driver_current,93.9757593805837,55.74667707060267,27.8,360.5,36.8,203.01999999999998,1679
+1,4,driver_power,719.6960690887435,423.6761894848307,214.0,2727.2,282.7,1549.06,1679
+1,5,battery_voltage,7.567398141529664,0.09107735882105789,6.72,8.57,7.46,7.65,1399
+1,5,driver_voltage,7.674238741958541,0.03716879738998321,7.52,7.72,7.62,7.72,1399
+1,5,driver_current,89.46719085060758,78.10159446962763,1.0,482.0,1.2,197.52999999999997,1399
+1,5,driver_power,683.7934238741958,594.8768325768747,7.7,3629.5,9.6,1505.82,1399
+1,6,battery_voltage,7.5643,0.09590065892959655,6.38,7.92,7.46,7.65,1400
+1,6,driver_voltage,7.671771428571429,0.03617334622658825,7.53,7.72,7.62,7.72,1400
+1,6,driver_current,89.98299999999999,77.81254483663173,1.2,488.2,1.5,195.08999999999992,1400
+1,6,driver_power,687.5955714285715,592.6184382563204,9.6,3675.9,11.6,1486.2799999999995,1400
+1,7,battery_voltage,7.401995997998999,0.1626678481225002,5.68,7.84,7.178999999999999,7.58,1999
+1,7,driver_voltage,7.580870435217609,0.0695023258219129,7.03,7.71,7.49,7.65,1999
+1,7,driver_current,295.10135067533764,184.5633418648918,1.8,1844.8,139.5,513.4799999999996,1999
+1,7,driver_power,2224.579089544772,1334.1351842233807,13.5,13028.5,1067.0,3846.949999999996,1999
+1,8,battery_voltage,7.495618749999998,0.16052171710387422,6.2,8.01,7.32,7.63,1600
+1,8,driver_voltage,7.624087500000001,0.07357003593595213,7.32,7.7,7.54,7.7,1600
+1,8,driver_current,171.11074999999997,177.61779731530132,1.2,1020.2,1.2,365.53499999999997,1600
+1,8,driver_power,1291.5584375,1336.287945064194,9.6,7495.0,9.6,2757.4399999999996,1600
+1,9,battery_voltage,7.628449275362319,0.016810194282541626,7.33,7.84,7.62,7.64,1380
+1,9,driver_voltage,7.696985507246377,0.005170039066434661,7.68,7.7,7.69,7.7,1380
+1,9,driver_current,1.2042753623188402,0.12729339318860894,1.0,1.5,1.0,1.5,1380
+1,9,driver_power,9.532898550724637,0.973233661845408,7.7,11.6,7.7,11.5,1380
+2,0,battery_voltage,7.7474799999999995,0.010385823542758655,7.68,7.81,7.73,7.76,500
+2,0,driver_voltage,0.0,0.0,0.0,0.0,0.0,0.0,500
+2,0,driver_current,2.4976,0.13156313205237571,2.2,2.8,2.2,2.8,500
+2,0,driver_power,0.0,0.0,0.0,0.0,0.0,0.0,500
+2,1,battery_voltage,7.741030375223348,0.2063123600252868,6.92,9.43,7.63,8.3,1679
+2,1,driver_voltage,0.000577724836212031,0.008153021292940625,0.0,0.32,0.0,0.0,1679
+2,1,driver_current,107.42328767123288,48.8923086215337,0.0,327.0,50.2,194.52999999999997,1679
+2,1,driver_power,0.1627159023228112,1.5948901598111953,0.0,63.2,0.0,0.6,1679
+2,2,battery_voltage,7.725482142857143,0.1669764215420076,6.46,8.71,7.63,8.181499999999998,1680
+2,2,driver_voltage,0.0007261904761904763,0.002857968768003741,0.0,0.03,0.0,0.01,1680
+2,2,driver_current,107.26202380952381,49.69300894742027,34.5,305.2,49.99,195.52499999999998,1680
+2,2,driver_power,0.17476190476190473,0.5013798142555058,0.0,8.4,0.0,1.0,1680
+2,3,battery_voltage,7.695693865396069,0.11099712397033663,7.4,8.75,7.63,7.73,1679
+2,3,driver_voltage,0.02108397855866587,0.32522645192114247,0.0,7.64,0.0,0.0,1679
+2,3,driver_current,105.54270399047053,41.81706206148446,50.0,305.5,52.2,178.01999999999998,1679
+2,3,driver_power,3.828945801072067,60.173445933327606,0.0,1461.2,0.0,0.6,1679
+2,4,battery_voltage,7.695979749851102,0.12349007794680539,7.43,8.69,7.62,7.73,1679
+2,4,driver_voltage,0.13916021441334128,0.9944968109420818,0.0,7.7,0.0,0.01,1679
+2,4,driver_current,107.70851697438952,44.560248271162536,37.2,295.0,50.2,180.5,1679
+2,4,driver_power,24.56694460988683,175.59707449660857,0.0,1476.7,0.0,1.1,1679
+2,5,battery_voltage,7.7117642857142865,0.12735036128953822,6.98,8.69,7.62,7.75,1400
+2,5,driver_voltage,0.00034285714285714285,0.00298140874774106,0.0,0.09,0.0,0.0,1400
+2,5,driver_current,99.153,82.12831192286555,2.5,567.2,2.8,186.0,1400
+2,5,driver_power,0.11364285714285714,0.3973369369673642,0.0,6.6,0.0,0.7,1400
+2,6,battery_voltage,7.697140814867762,0.10839630587315413,6.65,8.69,7.62,7.75,1399
+2,6,driver_voltage,5.267862759113653,3.4734721952692857,0.0,7.78,0.0,7.78,1399
+2,6,driver_current,97.96318799142244,79.41465900265236,2.5,554.8,2.8,180.8,1399
+2,6,driver_power,574.2476054324518,640.1537162780332,0.0,4161.3,0.0,1368.43,1399
+2,7,battery_voltage,7.603271635817908,0.14832363821228217,6.42,8.93,7.499,7.68,1999
+2,7,driver_voltage,1.3282941470735368,2.692144792745343,0.0,8.11,0.0,7.59,1999
+2,7,driver_current,322.89629814907454,177.33535901184234,3.0,1770.0,200.3,552.7999999999993,1999
+2,7,driver_power,528.2210105052526,1348.9896257455607,0.0,13467.5,0.0,2650.53,1999
+2,8,battery_voltage,7.65768125,0.13794230115329809,6.6,8.89,7.52,7.75,1600
+2,8,driver_voltage,7.667618749999998,0.18591764441548603,2.82,7.78,7.54,7.77,1600
+2,8,driver_current,173.71099999999998,184.48457229504126,2.5,1069.8,2.8,409.81,1600
+2,8,driver_power,1312.43,1385.1399417067287,19.4,7771.7,21.3,3089.52,1600
+2,9,battery_voltage,7.73295652173913,0.013392533915869233,7.59,7.84,7.71,7.75,1380
+2,9,driver_voltage,7.769173913043477,0.003412456479394225,7.75,7.77,7.76,7.77,1380
+2,9,driver_current,2.568913043478261,0.14395322331975072,2.2,3.0,2.5,2.8,1380
+2,9,driver_power,19.862101449275364,0.9559659265082325,17.4,23.3,19.4,21.4,1380
+3,0,battery_voltage,7.45452,0.035571058466129485,7.29,7.53,7.38,7.5,500
+3,0,driver_voltage,7.756,0.005182056292132354,7.74,7.76,7.75,7.76,500
+3,0,driver_current,2.467,0.132234533855146,2.2,2.8,2.2,2.5,500
+3,0,driver_power,19.184800000000003,0.8502793128258733,17.4,21.3,17.4,19.4,500
+3,1,battery_voltage,7.371690476190476,0.15214957502091975,5.75,8.0,7.13,7.46,1680
+3,1,driver_voltage,7.6662380952380955,0.026749947948547688,7.56,7.74,7.62,7.7,1680
+3,1,driver_current,120.64755952380952,45.06612526293382,2.5,326.5,62.8,192.8,1680
+3,1,driver_power,923.7948809523809,341.7849532498505,19.4,2476.9,483.0,1470.53,1680
+3,2,battery_voltage,7.385789160214414,0.09982382981053599,6.46,8.04,7.25,7.45,1679
+3,2,driver_voltage,7.66630732578916,0.025702355854660842,7.57,7.71,7.63,7.7,1679
+3,2,driver_current,118.98106015485409,43.73993013832914,48.5,320.2,62.2,184.54999999999995,1679
+3,2,driver_power,911.0730792138179,331.87026749569503,373.4,2423.9,479.58000000000004,1411.82,1679
+3,3,battery_voltage,7.528272781417511,0.12791299716110113,6.67,8.36,7.37,7.59,1679
+3,3,driver_voltage,7.673883263847529,0.08079197200952822,7.54,8.3,7.62,7.7,1679
+3,3,driver_current,121.07957117331746,50.43926030888338,59.2,348.2,61.0,210.74999999999994,1679
+3,3,driver_power,929.0962477665278,388.7219292598011,456.1,2629.3,469.4,1606.6299999999999,1679
+3,4,battery_voltage,7.554764740917212,0.1047241739326571,6.82,8.52,7.38,7.62,1679
+3,4,driver_voltage,7.657164979154259,0.040349377800655666,7.54,8.32,7.61,7.69,1679
+3,4,driver_current,113.73877307921383,49.774147869250136,47.8,352.5,59.0,204.2,1679
+3,4,driver_power,869.5618225134009,377.0168567686825,366.8,2657.4,454.38,1554.6299999999999,1679
+3,5,battery_voltage,7.556735714285715,0.11362939085576147,6.34,8.13,7.4,7.66,1400
+3,5,driver_voltage,7.6700857142857135,0.05564483072816437,7.45,7.75,7.61,7.74,1400
+3,5,driver_current,107.64071428571428,86.39640484441367,2.5,556.5,2.8,200.015,1400
+3,5,driver_power,820.8755714285713,656.271168851287,19.4,4144.5,21.3,1526.5149999999999,1400
+3,6,battery_voltage,7.570443173695496,0.11395392623750143,6.76,8.48,7.4,7.67,1399
+3,6,driver_voltage,7.672573266619014,0.07671797859997401,7.44,8.29,7.59,7.74,1399
+3,6,driver_current,107.10736240171552,87.05427415232587,2.5,529.0,2.8,218.25999999999993,1399
+3,6,driver_power,817.5533238027162,663.023939953446,19.3,3938.4,21.3,1666.9299999999996,1399
+3,7,battery_voltage,7.490840420210104,0.13535403489288855,6.71,10.04,7.32,7.6,1999
+3,7,driver_voltage,7.554727363681842,0.0882456826542263,6.99,8.16,7.45,7.63,1999
+3,7,driver_current,329.48769384692343,171.04053658062494,2.5,1662.0,189.8,543.3999999999999,1999
+3,7,driver_power,2476.7559779889943,1219.052357236027,19.4,11617.4,1446.1,4168.539999999999,1999
+3,8,battery_voltage,7.602820512820513,0.11406028829612411,6.78,8.35,7.46,7.7,1599
+3,8,driver_voltage,7.626491557223265,0.10578456404410624,7.27,7.74,7.5,7.73,1599
+3,8,driver_current,186.5494684177611,192.87936695873694,2.5,1012.0,2.8,421.6999999999998,1599
+3,8,driver_power,1402.5835522201376,1444.0871095993582,19.3,7371.2,21.3,3166.3599999999988,1599
+3,9,battery_voltage,7.687603186097031,0.012103615042118982,7.5,7.73,7.67,7.7,1381
+3,9,driver_voltage,7.729493120926867,0.0022913170456055777,7.71,7.73,7.73,7.73,1381
+3,9,driver_current,2.672266473569877,0.15456297890383622,2.2,3.0,2.5,2.8,1381
+3,9,driver_power,20.454380883417816,1.0504953957832597,17.4,23.2,19.3,21.3,1381
+4,0,battery_voltage,8.34564,0.008598736916146642,8.3,8.37,8.33,8.35,500
+4,0,driver_voltage,8.411579999999999,0.0037592371204081165,8.4,8.42,8.41,8.42,500
+4,0,driver_current,0.9468000000000001,0.09288172063466583,0.8,1.2,0.8,1.0,500
+4,0,driver_power,7.841400000000001,0.9752580666639916,6.3,10.5,6.3,8.4,500
+4,1,battery_voltage,8.314964285714286,0.10279940468707002,7.58,9.39,8.26,8.34,1680
+4,1,driver_voltage,8.366083333333334,0.02285240643019017,8.29,8.41,8.33,8.4,1680
+4,1,driver_current,112.94559523809524,48.1214318380799,0.8,316.5,52.0,193.8,1680
+4,1,driver_power,943.8909523809523,399.58061664378164,6.3,2623.0,436.695,1613.725,1680
+4,2,battery_voltage,8.31384752829065,0.07125950563796962,7.98,9.16,8.27,8.34,1679
+4,2,driver_voltage,8.359916617033948,0.021801853460053863,8.27,8.4,8.32,8.39,1679
+4,2,driver_current,113.83257891602146,48.48157292159468,30.0,327.2,54.2,193.54999999999995,1679
+4,2,driver_power,950.6208457415128,402.3546208261049,251.6,2705.9,454.77000000000004,1612.8199999999997,1679
+4,3,battery_voltage,8.307921381774866,0.10199162607424958,7.89,9.23,8.26,8.34,1679
+4,3,driver_voltage,8.351899940440738,0.02376683507202642,8.26,8.4,8.31,8.38,1679
+4,3,driver_current,121.55175699821322,52.30138622809843,54.0,327.5,56.980000000000004,208.7,1679
+4,3,driver_power,1014.0254318046456,433.32079254465367,451.6,2706.4,477.52,1735.1799999999998,1679
+4,4,battery_voltage,8.300184633710543,0.08988418837788688,7.6,9.08,8.25,8.33,1679
+4,4,driver_voltage,8.346843359142346,0.024554065803240332,8.25,8.4,8.3,8.38,1679
+4,4,driver_current,122.3432400238237,54.492156660654956,32.5,333.0,57.8,220.82,1679
+4,4,driver_power,1019.9188207266232,451.0278102742685,272.4,2753.5,483.48,1833.5699999999997,1679
+4,5,battery_voltage,8.302621428571427,0.09841008914155279,6.9,9.36,8.25,8.34,1400
+4,5,driver_voltage,8.350542857142855,0.033369157372331364,8.18,8.4,8.31,8.39,1400
+4,5,driver_current,102.85285714285715,84.87862093628371,1.0,584.0,1.2,192.23999999999995,1400
+4,5,driver_power,856.1426428571428,704.1388750298124,8.4,4777.8,10.5,1600.6899999999998,1400
+4,6,battery_voltage,8.297591136526089,0.08956013209256916,7.82,9.22,8.25,8.34,1399
+4,6,driver_voltage,8.346168691922802,0.03662890683539186,8.17,8.39,8.3,8.39,1399
+4,6,driver_current,110.74231593995711,91.14533707937866,1.0,601.8,1.2,211.82,1399
+4,6,driver_power,921.0741243745534,755.561486030492,8.4,4914.0,10.5,1758.4399999999996,1399
+4,7,battery_voltage,8.234297148574287,0.13266496802326547,7.4,9.72,8.119,8.27,1999
+4,7,driver_voltage,8.245637818909454,0.07352677796233661,7.69,8.39,8.15,8.31,1999
+4,7,driver_current,349.4773886943472,185.60639839215835,1.2,1785.8,215.0,593.26,1999
+4,7,driver_power,2868.221660830415,1448.0665083754689,10.5,13739.1,1783.69,4838.08,1999
+4,8,battery_voltage,8.2705375,0.11232696441898865,7.22,10.87,8.19,8.33,1600
+4,8,driver_voltage,8.30346875,0.07415249081029454,7.9,8.38,8.21,8.38,1600
+4,8,driver_current,183.06050000000002,196.76623814197737,1.0,1166.5,1.2,440.5,1600
+4,8,driver_power,1505.6023125000002,1608.954606461735,8.4,9240.1,10.5,3619.8,1600
+4,9,battery_voltage,8.315079710144929,0.010781340199977585,8.25,8.41,8.31,8.33,1380
+4,9,driver_voltage,8.377036231884057,0.00459988558089925,8.36,8.38,8.37,8.38,1380
+4,9,driver_current,1.1152898550724637,0.11183544856050248,0.8,1.5,1.0,1.2,1380
+4,9,driver_power,9.59304347826087,1.1204970205951719,6.3,12.6,8.4,10.5,1380
+```
+
+
+```
+$ cat cross_robot_summary.csv
+robot,category,side,direction,parameter,value
+1,static,L,FWD,deadband,0.453478224005701
+1,static,L,FWD,gain_rpm_per_pwm,196.9311931930522
+1,static,L,FWD,r2,0.9941453345400031
+1,static,L,REV,deadband,0.4658323257414438
+1,static,L,REV,gain_rpm_per_pwm,194.7615888415057
+1,static,L,REV,r2,0.9847761856050391
+1,static,R,FWD,deadband,0.4996001828763931
+1,static,R,FWD,gain_rpm_per_pwm,251.13286663851738
+1,static,R,FWD,r2,0.9756906265235189
+1,static,R,REV,deadband,0.46603011317278237
+1,static,R,REV,gain_rpm_per_pwm,227.30764189710735
+1,static,R,REV,r2,0.9911191534158227
+2,static,L,FWD,deadband,0.37188065761010214
+2,static,L,FWD,gain_rpm_per_pwm,192.45719310716163
+2,static,L,FWD,r2,0.9938383111873036
+2,static,L,REV,deadband,0.4384885572194963
+2,static,L,REV,gain_rpm_per_pwm,229.8107921431393
+2,static,L,REV,r2,0.9703493233395831
+2,static,R,FWD,deadband,0.38278457861641557
+2,static,R,FWD,gain_rpm_per_pwm,194.96236506401698
+2,static,R,FWD,r2,0.966933781014543
+2,static,R,REV,deadband,0.3681104381159083
+2,static,R,REV,gain_rpm_per_pwm,186.0687969483011
+2,static,R,REV,r2,0.9892111255854624
+3,static,L,FWD,deadband,0.4333697674951166
+3,static,L,FWD,gain_rpm_per_pwm,213.21051979186174
+3,static,L,FWD,r2,0.9623932061019521
+3,static,L,REV,deadband,0.4316325499510614
+3,static,L,REV,gain_rpm_per_pwm,215.7857501228698
+3,static,L,REV,r2,0.9576061216820725
+3,static,R,FWD,deadband,0.3898521970902558
+3,static,R,FWD,gain_rpm_per_pwm,174.17939559020897
+3,static,R,FWD,r2,0.9932775086419531
+3,static,R,REV,deadband,0.44216222625519974
+3,static,R,REV,gain_rpm_per_pwm,195.42439368497315
+3,static,R,REV,r2,0.9709939097205058
+4,static,L,FWD,deadband,0.4283594175764341
+4,static,L,FWD,gain_rpm_per_pwm,245.57182322310825
+4,static,L,FWD,r2,0.9533211400641531
+4,static,L,REV,deadband,0.42958227720810266
+4,static,L,REV,gain_rpm_per_pwm,243.65215021816243
+4,static,L,REV,r2,0.9559193591030736
+4,static,R,FWD,deadband,0.39595930728809636
+4,static,R,FWD,gain_rpm_per_pwm,222.0230982706187
+4,static,R,FWD,r2,0.9822159494111079
+4,static,R,REV,deadband,0.3922642934012985
+4,static,R,REV,gain_rpm_per_pwm,213.2642005806817
+4,static,R,REV,r2,0.9797739357568294
+1,dynamic,L,,L_0.50_FWD:tau_s,0.38450771235671183
+1,dynamic,L,,L_0.80_FWD:tau_s,0.20565592647152334
+1,dynamic,L,,L_0.60_REV:tau_s,0.3387180640911489
+1,dynamic,R,,R_0.50_FWD:tau_s,0.4539220790420045
+1,dynamic,R,,R_0.80_FWD:tau_s,0.22035363928670548
+1,dynamic,R,,R_0.60_REV:tau_s,0.2896909940085774
+2,dynamic,L,,L_0.50_FWD:tau_s,0.33742751453071934
+2,dynamic,L,,L_0.80_FWD:tau_s,0.19364719851628368
+2,dynamic,L,,L_0.60_REV:tau_s,0.28801738909479824
+2,dynamic,R,,R_0.50_FWD:tau_s,0.40343028430891426
+2,dynamic,R,,R_0.80_FWD:tau_s,0.1971527218625057
+2,dynamic,R,,R_0.60_REV:tau_s,0.29033171575620237
+3,dynamic,L,,L_0.50_FWD:tau_s,0.32523066740540296
+3,dynamic,L,,L_0.80_FWD:tau_s,0.2102846108034862
+3,dynamic,L,,L_0.60_REV:tau_s,0.34143595401523336
+3,dynamic,R,,R_0.50_FWD:tau_s,0.29177063201192527
+3,dynamic,R,,R_0.80_FWD:tau_s,0.18305216922629192
+3,dynamic,R,,R_0.60_REV:tau_s,0.30909626856638306
+4,dynamic,L,,L_0.50_FWD:tau_s,0.33897651350196306
+4,dynamic,L,,L_0.80_FWD:tau_s,0.2149235029284168
+4,dynamic,L,,L_0.60_REV:tau_s,0.3200239741187025
+4,dynamic,R,,R_0.50_FWD:tau_s,0.30561271552120167
+4,dynamic,R,,R_0.80_FWD:tau_s,0.21714295745164247
+4,dynamic,R,,R_0.60_REV:tau_s,0.2866513623027041
+1,asymmetry,LR,,mean_mismatch_pct,12.383551470666234
+1,asymmetry,LR,,p95_mismatch_pct,18.023532567284533
+2,asymmetry,LR,,mean_mismatch_pct,3.310340172039653
+2,asymmetry,LR,,p95_mismatch_pct,6.271509670881584
+3,asymmetry,LR,,mean_mismatch_pct,11.455920572533444
+3,asymmetry,LR,,p95_mismatch_pct,21.782990549429094
+4,asymmetry,LR,,mean_mismatch_pct,2.428300276728965
+4,asymmetry,LR,,p95_mismatch_pct,3.888147592002149
+```
+

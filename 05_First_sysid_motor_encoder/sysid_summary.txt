@@ -1,0 +1,47 @@
+Actuator SysID Summary (Phase-Aware Analysis)
+==============================================
+
+Robot 1:
+  Left Motor:
+    Forward: Deadband=0.2310, Gain=32481.79
+    Reverse: Deadband=0.2243, Gain=32059.47
+  Right Motor:
+    Forward: Deadband=0.1364, Gain=26689.46
+    Reverse: Deadband=0.1328, Gain=27019.28
+    Left avg tau: 0.243 s
+    Right avg tau: 0.407 s
+    Asymmetry ratio: nan
+
+Robot 2:
+  Left Motor:
+    Forward: Deadband=0.2367, Gain=9091.74
+    Reverse: Deadband=0.2786, Gain=10228.79
+  Right Motor:
+    Forward: Deadband=0.1448, Gain=7957.44
+    Reverse: Deadband=0.1448, Gain=7957.44
+    Left avg tau: 0.954 s
+    Right avg tau: 1.178 s
+    Asymmetry ratio: nan
+
+Robot 3:
+  Left Motor:
+    Forward: Deadband=0.2054, Gain=8453.48
+    Reverse: Deadband=0.0000, Gain=6138.70
+  Right Motor:
+    Forward: Deadband=0.2287, Gain=9550.07
+    Reverse: Deadband=0.2337, Gain=9457.62
+    Left avg tau: 0.253 s
+    Right avg tau: 1.083 s
+    Asymmetry ratio: nan
+
+Robot 4:
+  Left Motor:
+    Forward: Deadband=0.2047, Gain=9865.33
+    Reverse: Deadband=0.0546, Gain=7724.75
+  Right Motor:
+    Forward: Deadband=0.0683, Gain=7949.84
+    Reverse: Deadband=0.1949, Gain=9267.99
+    Left avg tau: 0.272 s
+    Right avg tau: 0.704 s
+    Asymmetry ratio: 0.789
+
